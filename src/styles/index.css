@@ -1,0 +1,106 @@
+@import './globals.css';
+@import './lightTheme.css';
+@import './darkTheme.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-mobile-xl);
+}
+
+h2 {
+  font-size: var(--font-size-mobile-lg);
+}
+
+h3 {
+  font-size: var(--font-size-mobile-base);
+}
+
+h4 {
+  font-size: var(--font-size-mobile-sm);
+}
+
+h5,
+h6 {
+  font-size: var(--font-size-mobile-sm);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --current-font-size-sm: var(--font-size-tablet-sm);
+    --current-font-size-base: var(--font-size-tablet-base);
+    --current-font-size-lg: var(--font-size-tablet-lg);
+    --current-font-size-xl: var(--font-size-tablet-xl);
+
+    --current-spacing-xs: var(--spacing-tablet-xs);
+    --current-spacing-sm: var(--spacing-tablet-sm);
+    --current-spacing-md: var(--spacing-tablet-md);
+    --current-spacing-lg: var(--spacing-tablet-lg);
+  }
+  h1 {
+    font-size: var(--font-size-tablet-xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-tablet-lg);
+  }
+
+  h3 {
+    font-size: var(--font-size-tablet-base);
+  }
+
+  h4 {
+    font-size: var(--font-size-tablet-sm);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --current-font-size-sm: var(--font-size-desktop-sm);
+    --current-font-size-base: var(--font-size-desktop-base);
+    --current-font-size-lg: var(--font-size-desktop-lg);
+    --current-font-size-xl: var(--font-size-desktop-xl);
+
+    --current-spacing-xs: var(--spacing-desktop-xs);
+    --current-spacing-sm: var(--spacing-desktop-sm);
+    --current-spacing-md: var(--spacing-desktop-md);
+    --current-spacing-lg: var(--spacing-desktop-lg);
+  }
+  h1 {
+    font-size: var(--font-size-desktop-xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-desktop-lg);
+  }
+
+  h3 {
+    font-size: var(--font-size-desktop-base);
+  }
+
+  h4 {
+    font-size: var(--font-size-desktop-sm);
+  }
+}
