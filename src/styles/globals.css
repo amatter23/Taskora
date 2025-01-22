@@ -5,19 +5,18 @@
 
   /* Typography */
   --font-family: 'Chillax', sans-serif;
-  /* Breakpoints */
-  --screen-sm: 640px;
-  --screen-md: 768px;
-  --screen-lg: 1024px;
-  --screen-xl: 1280px;
-  --screen-2xl: 1536px;
 
-  /* Container widths */
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1280px;
-  --container-2xl: 1536px;
+  --current-font-size-sm: var(--font-size-mobile-sm);
+  --current-font-size-base: var(--font-size-mobile-base);
+  --current-font-size-lg: var(--font-size-mobile-lg);
+  --current-font-size-xl: var(--font-size-mobile-smxl);
+
+  --current-spacing-xs: var(--spacing-mobile-xs);
+  --current-spacing-sm: var(--spacing-mobile-sm);
+  --current-spacing-md: var(--spacing-mobile-md);
+  --current-spacing-lg: var(--spacing-mobile-lg);
+
+  --current-border-radius: 0.5rem;
 
   /* Responsive font sizes */
   --font-size-mobile-sm: 0.75rem; /* 12px */
@@ -50,42 +49,9 @@
   --spacing-desktop-sm: 1rem; /* 16px */
   --spacing-desktop-md: 1.5rem; /* 24px */
   --spacing-desktop-lg: 2rem; /* 32px */
+
+  /* Responsive border radius */
+  --current-border-radius: 0.5rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-family);
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md);
-}
 
-h1 {
-  font-size: var(--font-size-mobile-xl);
-}
-
-h2 {
-  font-size: var(--font-size-mobile-lg);
-}
-
-h3 {
-  font-size: var(--font-size-mobile-base);
-}
-
-h4 {
-  font-size: var(--font-size-mobile-sm);
-}
-
-h5,
-h6 {
-  font-size: var(--font-size-mobile-sm);
-}
-
-b,
-strong {
-  font-weight: 500;
-}

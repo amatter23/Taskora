@@ -20,10 +20,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-family);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
-  margin-bottom: var(--spacing-md);
+}
+
+b{
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 h1 {
