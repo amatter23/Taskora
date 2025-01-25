@@ -1,20 +1,39 @@
-.container {
+.button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: var(--background-color);
-  background-color: var(--text-color);
   width: fit-content;
-  padding: calc(var(--current-spacing-xs)*0.3)
-    calc(var(--current-spacing-xs));
+  padding: calc(var(--current-spacing-xs) * 0.3) calc(var(--current-spacing-xs));
   cursor: pointer;
-  border-radius: 0.2rem;
-  margin: auto;
+  border-radius: var(--current-border-radius);
+  border: solid 1px var(--border-color);
 }
+.buttonActive {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  cursor: auto;
+}
+.buttonBg {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+.buttonBg:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+.buttonText {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+.buttonText:hover {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 .content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: calc(var(--current-spacing-xs)*0.5);
+  gap: calc(var(--current-spacing-xs) * 0.5);
 }
