@@ -1,0 +1,5 @@
+.changeType {
+  display: flex;
+  flex-direction: row;
+  gap: var(--current-spacing-xs);
+}
