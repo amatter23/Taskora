@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { selectTasksFullData } from './tasksFallDataSelector';
+import { selectTasksFullData } from '../tasks/tasksFallDataSelector';
 // Import necessary data selectors
 const selectProjects = state =>
   state.projects.queries?.['getProjects(undefined)']?.data;
