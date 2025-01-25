@@ -1,0 +1,23 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: var(--current-spacing-lg);
+  gap: var(--current-spacing-lg);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.name {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+@media (max-width: 900px) {
+  .boardContainer {
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

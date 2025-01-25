@@ -1,0 +1,16 @@
+.boardContainer {
+  display: flex;
+  flex-direction: row;
+  height: 95%;
+  gap: var(--current-spacing-lg);
+  padding: var(--current-spacing-lg) 0;
+}
+
+@media (max-width: 900px) {
+  .boardContainer {
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
