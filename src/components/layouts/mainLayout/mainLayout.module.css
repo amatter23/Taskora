@@ -1,0 +1,25 @@
+.layout {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: var(--current-spacing-lg);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 90%;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    padding: var(--current-spacing-md);
+  }
+}
