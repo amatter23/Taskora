@@ -7,5 +7,11 @@ nav {
 .actions {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: var(--current-spacing-xs);
 }
+.changeTheme {
+  display: flex;
+}
+
