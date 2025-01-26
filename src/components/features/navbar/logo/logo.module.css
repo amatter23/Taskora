@@ -1,0 +1,23 @@
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--current-spacing-sm);
+}
+.icon {
+  color: var(--primary-color);
+  font-size: 2rem;
+}
+.logo h1 {
+  font-weight: 900;
+  font-size: 2rem;
+}
+@media (max-width: 900px) {
+  .icon {
+    font-size: 1.5rem;
+  }
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+}
