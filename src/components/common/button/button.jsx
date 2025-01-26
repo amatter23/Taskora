@@ -1,5 +1,5 @@
 import style from './button.module.css';
-const Button = ({ children, onClick, isActive, bgColor, textColor }) => {
+const Button = ({ children, onClick, isActive, bgColor, textColor, color }) => {
   const handleClick = e => {
     onClick(e);
   };
@@ -14,7 +14,11 @@ const Button = ({ children, onClick, isActive, bgColor, textColor }) => {
     .join(' ');
 
   return (
-    <div onClick={handleClick} className={buttonClasses}>
+    <div
+      onClick={handleClick}
+      style={{ color: color || '' }}
+      className={buttonClasses}
+    >
       <div className={style.content}>{children}</div>
     </div>
   );
