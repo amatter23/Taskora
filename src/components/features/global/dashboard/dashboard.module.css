@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   margin: var(--current-spacing-lg);
   gap: var(--current-spacing-lg);
 }
