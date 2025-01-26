@@ -1,0 +1,20 @@
+.recentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  height: 100%;
+  padding-top: 2.5rem;
+  gap: var(--current-spacing-sm);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--light-text-color);
+}
+
+@media (max-width: 1000px) {
+  .recentContainer {
+    display: none;
+  }
+}
