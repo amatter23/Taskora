@@ -55,6 +55,7 @@
     calc(var(--current-spacing-xs) / 2);
   border-radius: var(--current-border-radius);
   color: var(--text-color);
+  text-align: center;
 }
 .prjectName {
   display: flex;
