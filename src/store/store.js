@@ -5,6 +5,7 @@ import { tagsApi } from './services/tagsApi';
 import { statusesApi } from './services/statusesApi';
 import modalStatusReducer from './slice/modalStatusSlice';
 import typeViewReducer from './slice/typeViewSlice';
+import themeReducer from './slice/themeSlice';
 
 export const additionalMiddleware = [
   projectsApi.middleware,
@@ -22,6 +23,7 @@ export const store = configureStore({
     [statusesApi.reducerPath]: statusesApi.reducer,
     modalStatus: modalStatusReducer,
     typeView: typeViewReducer,
+    theme: themeReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(additionalMiddleware),
