@@ -3,9 +3,10 @@ import { projectsApi } from './services/projectsApi';
 import { tasksApi } from './services/tasksApi';
 import { tagsApi } from './services/tagsApi';
 import { statusesApi } from './services/statusesApi';
-import modalStatusReducer from './slice/modalStatusSlice';
 import typeViewReducer from './slice/typeViewSlice';
 import themeReducer from './slice/themeSlice';
+import modalVisibilityReducer from './slice/modalVisibilitySlice';
+import modalComponentReducer from './slice/modalComponentSlice';
 
 export const additionalMiddleware = [
   projectsApi.middleware,
@@ -21,7 +22,8 @@ export const store = configureStore({
     [tasksApi.reducerPath]: tasksApi.reducer,
     [tagsApi.reducerPath]: tagsApi.reducer,
     [statusesApi.reducerPath]: statusesApi.reducer,
-    modalStatus: modalStatusReducer,
+    modalVisibility: modalVisibilityReducer,
+    modalComponent: modalComponentReducer,
     typeView: typeViewReducer,
     theme: themeReducer,
   },
