@@ -19,8 +19,7 @@
   color: var(--text-color);
 }
 .buttonBg:hover {
-  background-color: var(--text-color);
-  color: var(--background-color);
+  background-color: var(--hover-color);
 }
 .buttonText {
   background-color: var(--text-color);
