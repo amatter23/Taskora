@@ -1,19 +1,25 @@
-import classes from './loading.module.css';
+/**
+ * Loading component displays a spinner with optional text
+ * @param {Object} props - Component props
+ * @param {string} props.color - Color of the spinner border
+ * @param {string} props.text - Text to display below the spinner
+ * @returns {JSX.Element} Loading spinner with text
+ */
+import style from './loading.module.css';
 const Loading = ({ color, text }) => {
   return (
-    <div className={classes.container}>
+    <div className={style.container}>
+      {/* Spinner element with dynamic border color */}
       <div
-        className={classes.spinner}
+        className={style.spinner}
         style={{
-          borderColor: `${color} transparent transparent transparent`,
+          borderColor: `${color} `,
         }}
       />
+      {/* Text display below spinner */}
       <h1>{text}</h1>
     </div>
   );
-};
-Loading.defaultProps = {
-  text: 'One moment! Your productivity is loading.',
 };
 
 export default Loading;
