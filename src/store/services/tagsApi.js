@@ -17,4 +17,4 @@ export const tagsApi = createApi({
     }),
   }),
 });
-export const { useGetTagsQuery, useCreateTagsMutation } = tagsApi;
+export const { useGetTagsQuery, useCreateTagMutation } = tagsApi;

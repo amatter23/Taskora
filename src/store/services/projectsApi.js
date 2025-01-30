@@ -20,7 +20,7 @@ export const projectsApi = createApi({
     updateProject: builder.mutation({
       query: project => ({
         url: `projects/${project.uuid}`,
-        method: 'PUT',
+        method: 'PATCH',
         body: project,
       }),
       invalidatesTags: ['Projects'],
