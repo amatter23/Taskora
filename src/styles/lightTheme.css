@@ -1,8 +1,9 @@
 [data-theme='light'] {
   --primary-color: #306bff;
+  --hover-color: rgba(58, 114, 255, 0.171);
   --background-color: #ffffff;
   --text-color: #1e293b;
-  --light-text-color: #94a3b8;
+  --light-text-color: #748091;
   --border-color: #dde2e8;
   --primary-color: #306bff;
 }
