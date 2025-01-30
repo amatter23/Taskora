@@ -1,3 +1,29 @@
+/**
+ * A versatile card component that displays either project or task information
+ * @component
+ * @param {Object} props - Component props
+ * @param {'project'|'task'} props.type - Determines whether the card displays project or task information
+ * @param {string} props.uuid - Unique identifier for the project or task
+ * 
+ * @returns {JSX.Element} A card section containing:
+ * - Title section with name and description
+ * - Footer section with:
+ *   - For projects: task count
+ *   - For tasks: tag (if exists) and project name
+ *   - Due date for both types
+ * 
+ * @example
+ * // Project card
+ * <Card type="project" uuid="project-123" />
+ * 
+ * // Task card
+ * <Card type="task" uuid="task-456" />
+ * 
+ * @description
+ * The card is clickable and will open a modal with detailed view of the project/task.
+ * It uses Redux store to fetch data based on the UUID and type.
+ * Styling is handled through CSS modules (style object).
+ */
 import style from './card.module.css';
 import { MdOutlineTaskAlt, MdDateRange } from 'react-icons/md';
 import { FaProjectDiagram } from 'react-icons/fa';
@@ -5,12 +31,17 @@ import { useSelector } from 'react-redux';
 import { selectProjectWithUuid } from '../../../../store/selectors/projects/projectwithUuidSelector';
 import { selectTaskWithUuid } from '../../../../store/selectors/tasks/taskwithUuidSelector';
 import useDeadlineRemaining from '../../../../hooks/useDeadlineRemaining';
-// type can be either 'project' or 'task'
-// uuid is used to fetch data
-// onClick is a function to handle click events
-const Card = ({ type, uuid, onClick }) => {
+import View from '../view/view/view';
+import useModalVisibility from '../../../../hooks/useModalVisibility';
+import useModalComponent from '../../../../hooks/useModalComponent';
+
+const Card = ({ type, uuid }) => {
+  const toggleVisibility = useModalVisibility();
+  const setComponent = useModalComponent();
+
   const handleClick = () => {
-    onClick(uuid);
+    setComponent(<View uuid={uuid} type={type} />);
+    toggleVisibility();
   };
 
   const data =
@@ -42,12 +73,12 @@ const Card = ({ type, uuid, onClick }) => {
           </div>
         ) : (
           <>
-            {data == null ? null : (
+            {data.tag === undefined ? null : (
               <div
                 style={{ backgroundColor: '#007bff' + '50' }}
                 className={style.tag}
               >
-                <h5>{data.tag.name}</h5>
+                <h5>{data?.tag.name}</h5>
               </div>
             )}
             <div
