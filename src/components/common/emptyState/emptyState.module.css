@@ -1,20 +1,35 @@
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .emptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xl);
+  padding: calc(var(--spacing-xl) * 2);
   text-align: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--hover-bg);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.4s ease-out;
 }
+
 
 .emptyState h2 {
   font-size: var(--font-size-xl);
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin: 0;
 }
 
 .emptyState p {
-  font-size: var(--font-size-lg);
-  color: var(--secondary-color);
+  font-size: var(--font-size-md);
+  color: var(--secondary-text-color);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.8;
 }
