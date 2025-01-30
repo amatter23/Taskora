@@ -1,23 +1,33 @@
+/**
+ * Creates an array of empty state messages with varying titles and subtitles
+ * @param {string} [type='Project'] - The type of item to reference in the messages
+ * @returns {Array<{title: string, subtitle: string}>} An array of message objects containing title and subtitle
+ * @example
+ * // returns array of messages with 'Task' as reference
+ * const messages = createEmptyStateMessages('Task');
+ * // returns default array of messages with 'Project' as reference
+ * const defaultMessages = createEmptyStateMessages();
+ */
 export const createEmptyStateMessages = (type = 'Project') => [
   {
-    title: `Your Canvas Awaits! 🎨`,
-    subtitle: `Start Your First ${type} Journey`
+    title: "Start Something New",
+    subtitle: `Create your first ${type}`
   },
   {
-    title: "Fresh Start, Endless Possibilities ✨",
-    subtitle: `Create Your First ${type}`
+    title: "Blank Canvas",
+    subtitle: `Begin your first ${type} here`
   },
   {
-    title: "Ready to Build Something Amazing? 🚀",
-    subtitle: `Begin Your ${type} Adventure`
+    title: "Nothing Here Yet",
+    subtitle: `Time to add your first ${type}`
   },
   {
-    title: "Empty Space, Infinite Potential 💫",
-    subtitle: `Launch Your First ${type}`
+    title: "Get Started",
+    subtitle: `Set up your first ${type}`
   },
   {
-    title: "Time to Make Magic Happen ⚡",
-    subtitle: `Kickstart Your First ${type}`
+    title: "Clean Slate",
+    subtitle: `Initialize your first ${type}`
   }
 ];
 
