@@ -35,6 +35,7 @@ import style from './tagPicker.module.css';
 import Button from '../../../../../common/button/button';
 import { useCreateTagMutation } from '../../../../../../store/services/tagsApi';
 import ColorSelect from '../../color/colorSelect';
+import { useCreateMutation } from '../../../../../../hooks/useCreateMutation';
 
 const TagPicker = ({ onChange }) => {
   const tags = useSelector(state => selectAllTags(state));
@@ -42,23 +43,19 @@ const TagPicker = ({ onChange }) => {
     name: '',
     color: 'var(--primary-color)',
   });
-  const [createTag] = useCreateTagMutation();
-  const handleCreateTag = async () => {
-    if (newTag.name) {
-      try {
-        await createTag({
-          name: newTag.name,
-          color: newTag.color,
-        });
-        setNewTag({
-          name: '',
-          color: 'var(--primary-color)',
-        });
-      } catch (error) {
-        console.error('Failed to create tag:', error);
-      }
-    }
-  };
+  const { handleMutation } = useCreateMutation(useCreateTagMutation, {
+    successMessage: `Tag added successfully`,
+    onSuccess: () =>
+      setNewTag({
+        name: '',
+        color: 'var(--primary-color)',
+      }),
+  });
+  const handleCreateTag = () =>
+    handleMutation({
+      name: newTag?.name,
+      color: newTag?.color,
+    });
   return (
     <>
       <div className={style.newTag}>
