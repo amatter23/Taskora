@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className={style.actions}>
         <div className={style.changeTheme}>
           <ChangeThemeButton
-            size={'calc(var(--current-font-size-sm)*2.5)'}
+            size={'calc(var(--current-font-size-sm)*2.2)'}
           ></ChangeThemeButton>
         </div>
 
