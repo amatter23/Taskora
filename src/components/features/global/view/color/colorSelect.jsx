@@ -21,8 +21,8 @@
 import { useState } from 'react';
 import { ColorPicker } from 'antd';
 import useProjectUpdate from '../../../../../hooks/useContentUpdate';
-const ColorSelect = ({ onColorSelect, data, uuid }) => {
-  const { handleUpdate } = useProjectUpdate();
+const ColorSelect = ({ onColorSelect, data, uuid, type }) => {
+  const { handleUpdate } = useProjectUpdate(type);
 
   const [color, setColor] = useState(data);
   const handleColorSelect = async color => {

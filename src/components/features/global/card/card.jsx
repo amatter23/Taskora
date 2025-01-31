@@ -4,21 +4,21 @@
  * @param {Object} props - Component props
  * @param {'project'|'task'} props.type - Determines whether the card displays project or task information
  * @param {string} props.uuid - Unique identifier for the project or task
- * 
+ *
  * @returns {JSX.Element} A card section containing:
  * - Title section with name and description
  * - Footer section with:
  *   - For projects: task count
  *   - For tasks: tag (if exists) and project name
  *   - Due date for both types
- * 
+ *
  * @example
  * // Project card
  * <Card type="project" uuid="project-123" />
- * 
+ *
  * // Task card
  * <Card type="task" uuid="task-456" />
- * 
+ *
  * @description
  * The card is clickable and will open a modal with detailed view of the project/task.
  * It uses Redux store to fetch data based on the UUID and type.
@@ -86,7 +86,7 @@ const Card = ({ type, uuid }) => {
               className={style.prjectName}
             >
               <FaProjectDiagram />
-              <h4>{data.project.name}</h4>
+              <h4>{data?.project?.name}</h4>
             </div>
           </>
         )}
