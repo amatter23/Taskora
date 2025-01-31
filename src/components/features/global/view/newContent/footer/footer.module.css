@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.actions {
+  display: flex;
+  gap: var(--current-spacing-sm);
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+    justify-content: start;
+    gap: var(--current-spacing-lg);
+  }
+  .actions{
+    flex-direction: column-reverse;
+  }
+}

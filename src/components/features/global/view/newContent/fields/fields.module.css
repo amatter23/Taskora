@@ -1,0 +1,9 @@
+.fields {
+  display: flex;
+  gap: var(--current-spacing-sm);
+}
+@media (max-width: 900px) {
+  .fields {
+    flex-direction: column;
+  }
+}

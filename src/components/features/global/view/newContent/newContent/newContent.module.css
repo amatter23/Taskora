@@ -1,0 +1,26 @@
+.new {
+  border: var(--border-color) solid 1px;
+  margin: auto;
+  width: 100%;
+  height: fit-content;
+  padding: var(--current-spacing-lg);
+  border-radius: var(--current-border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: var(--current-spacing-lg);
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--current-spacing-sm);
+}
+@media (max-width: 900px) {
+  .new {
+    width: 100%;
+  }
+  .actions {
+    flex-direction: row;
+    justify-content: left;
+  }
+}
