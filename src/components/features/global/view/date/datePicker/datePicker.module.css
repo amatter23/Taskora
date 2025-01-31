@@ -1,0 +1,29 @@
+.datePicker {
+  width: 350px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.dateLaple {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: var(--current-spacing-xs);
+  color: var(--text-color);
+  cursor: pointer;
+}
+.dateLaple:hover {
+  background-color: var(--border-color);
+}
+.dateLaple .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--current-spacing-xs);
+}
+.dateLaple .title .icon {
+  font-size: var(--current-font-size-lg);
+}

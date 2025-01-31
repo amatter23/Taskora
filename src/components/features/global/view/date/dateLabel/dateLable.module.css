@@ -1,0 +1,22 @@
+.dateLabel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: var(--current-spacing-xs);
+  color: var(--text-color);
+  cursor: pointer;
+}
+.dateLabel:hover {
+  background-color: var(--border-color);
+}
+.dateLabel .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--current-spacing-xs);
+}
+.dateLabel .title .icon {
+  font-size: var(--current-font-size-lg);
+}
