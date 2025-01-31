@@ -1,0 +1,37 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--current-spacing-sm);
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--current-spacing-sm) / 2);
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  margin-left: var(--current-spacing-sm);
+  gap: calc(var(--current-spacing-sm) / 2);
+  color: var(--light-text-color);
+  font-size: var(--current-font-size-lg);
+}
+
+.input {
+  all: unset;
+  background-color: var(--background-color);
+  border: none;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.inputName {
+  font-size: var(--current-font-size-lg);
+}
+
+.inputDescription {
+  font-size: var(--current-font-size-sm);
+  color: var(--light-text-color);
+}
