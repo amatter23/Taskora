@@ -1,0 +1,14 @@
+.label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(var(--current-spacing-xs) / 1.5) calc(var(--current-spacing-xs));
+  transition: all ease-in-out 200ms;
+  cursor: pointer;
+  border-radius: var(--current-border-radius);
+  gap: var(--current-spacing-xs);
+}
+.label:hover {
+  background-color: var(--border-color);
+}
