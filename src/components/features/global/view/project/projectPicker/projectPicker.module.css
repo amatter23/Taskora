@@ -1,0 +1,24 @@
+.projectLable {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: calc(var(--current-spacing-xs) * 0.6);
+  color: var(--text-color);
+  cursor: pointer;
+}
+.projectLable:hover {
+  background-color: var(--border-color);
+}
+.projectLable .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--current-spacing-xs);
+}
+.projectLable .icon {
+}
+.projectLable .title .icon {
+  font-size: var(--current-font-size-lg);
+}
