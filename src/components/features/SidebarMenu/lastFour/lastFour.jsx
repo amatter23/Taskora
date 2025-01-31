@@ -24,7 +24,17 @@ const LastFour = ({ type }) => {
    * Handler for opening new content modal
    */
   const handleClick = () => {
-    setComponent(<NewContent type={type} />);
+    setComponent(
+      <NewContent
+        onCancle={() => {
+          toggleVisibility();
+        }}
+        onCreate={() => {
+          toggleVisibility();
+        }}
+        type={type}
+      />
+    );
     toggleVisibility();
   };
 

@@ -24,22 +24,22 @@ import { useCreateProjectMutation } from '../../../../../../store/services/proje
 import Main from '../main/main';
 import Fields from '../fields/fields';
 import Footer from '../footer/footer';
+import { useCreateMutation } from '../../../../../../hooks/useCreateMutation';
 const NewContent = ({ projectData, type, onCancle, onCreate }) => {
   const [newContent, setNewContent] = useState({
     projectUuid: projectData?.uuid,
   });
 
-  const [createContent] =
-    type === 'project' ? useCreateProjectMutation() : useCreateTaskMutation();
-  const handleCreate = async () => {
-    const result = await createContent(newContent);
-    if (result.data) {
-      console.log(result);
-      onCreate();
-    } else {
-      console.log(result);
+  const { handleMutation } = useCreateMutation(
+    type === 'project' ? useCreateProjectMutation : useCreateTaskMutation,
+    {
+      successMessage: `${type} added successfully`,
+      onSuccess: onCreate,
     }
-  };
+  );
+
+  const handleCreate = () => handleMutation(newContent);
+
   return (
     <div className={style.new}>
       <Main

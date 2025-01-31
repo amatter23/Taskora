@@ -5,6 +5,7 @@ import Modal from './components/common/modal/modal';
 import useFetchAllData from './hooks/useFetchAllData';
 import MainLayout from './components/layouts/mainLayout/mainLayout';
 import { useTheme } from './hooks/useTheme';
+import Toast from './components/common/toast/toast';
 
 function App() {
   const { theme } = useTheme();
@@ -20,6 +21,7 @@ function App() {
         <Dashboard />
       </MainLayout>
       <Modal></Modal>
+      <Toast />
     </>
   );
 }
