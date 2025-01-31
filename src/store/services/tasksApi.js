@@ -1,7 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const tasksApi = createApi({
   reducerPath: 'tasks',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: import.meta.env.PROD 
+      ? 'https://todo-list-api-production-1907.up.railway.app/api/v1'
+      : '/api'
+  }),
   endpoints: builder => ({
     getTasks: builder.query({
       query: () => 'tasks',
