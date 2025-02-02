@@ -7,16 +7,13 @@ import MiniCard from '../miniCard/miniCard';
 import Header from '../header/header';
 import useLastFour from '../../../../hooks/useLastFour';
 import EmptyState from '../../../common/emptyState/emptyState';
-import useModalVisibility from '../../../../hooks/useModalVisibility';
-import useModalComponent from '../../../../hooks/useModalComponent';
-import NewContent from '../../global/view/newContent/newContent/newContent';
+import useAddNewContent from '../../../../hooks/useAddNewContent';
 const LastFour = ({ type }) => {
   // Fetch the last four items of the specified type
   const data = useLastFour(type);
   // Hooks for managing modal visibility and content
-  const toggleVisibility = useModalVisibility();
-  const setComponent = useModalComponent();
 
+  const NewContent = useAddNewContent();
   // Show empty state if no items exist
   if (data.length === 0) return <EmptyState></EmptyState>;
 
@@ -24,18 +21,7 @@ const LastFour = ({ type }) => {
    * Handler for opening new content modal
    */
   const handleClick = () => {
-    setComponent(
-      <NewContent
-        onCancle={() => {
-          toggleVisibility();
-        }}
-        onCreate={() => {
-          toggleVisibility();
-        }}
-        type={type}
-      />
-    );
-    toggleVisibility();
+    NewContent(type);
   };
 
   return (
