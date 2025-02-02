@@ -14,7 +14,22 @@ import ButtonSelect from '../../buttonSelect/buttonSelect';
 import Button from '../../../../../common/button/button';
 import { MdLibraryAdd } from 'react-icons/md';
 import style from './footer.module.css';
-const Footer = ({ onProjectSelect, projectData, OnCreate, type, onCancle }) => {
+const Footer = ({
+  onProjectSelect,
+  projectData,
+  OnCreate,
+  type,
+  onCancel,
+  newContent,
+}) => {
+  const displayed =
+    type === 'project'
+      ? newContent?.name && newContent?.statusUuid && newContent?.color
+        ? false
+        : true
+      : newContent?.name && newContent?.statusUuid
+      ? false
+      : true;
   return (
     <div className={style.footer}>
       {type === 'task' ? (
@@ -29,13 +44,13 @@ const Footer = ({ onProjectSelect, projectData, OnCreate, type, onCancle }) => {
         ''
       )}
       <div className={style.actions}>
-        <Button onClick={onCancle} bgColor={true} color={'var(--error-color)'}>
+        <Button width={"100%"} onClick={onCancel} bgColor={true}>
           <h5>Cancel</h5>
         </Button>
         <Button
+          displayed={displayed}
           onClick={OnCreate}
-          bgColor={true}
-          color={'var(--success-color)'}
+          bgColor={displayed ? false : true}
         >
           <MdLibraryAdd />
           <h5>Create</h5>
