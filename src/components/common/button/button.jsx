@@ -9,7 +9,15 @@
  * @param {string} props.color - Custom color value
  */
 import style from './button.module.css';
-const Button = ({ children, onClick, isActive, bgColor, textColor, color }) => {
+const Button = ({
+  children,
+  onClick,
+  isActive,
+  bgColor,
+  textColor,
+  color,
+  width,
+}) => {
   // Handle click events and forward them to the onClick prop
   const handleClick = e => {
     onClick(e);
@@ -31,6 +39,7 @@ const Button = ({ children, onClick, isActive, bgColor, textColor, color }) => {
       onClick={handleClick}
       style={{ color: color || '' }} // Apply custom color if provided
       className={buttonClasses}
+      style={{ width: width }}
     >
       <div className={style.content}>{children}</div>
     </div>
