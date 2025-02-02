@@ -53,7 +53,7 @@ const View = ({ uuid, type }) => {
   return (
     <>
       {isMobile ? (
-        <div className={style.contaner}>
+        <div className={style.container}>
           <div className={style.content}>
             <div className={style.main}>
               <Details
@@ -69,7 +69,7 @@ const View = ({ uuid, type }) => {
           </div>
         </div>
       ) : (
-        <div className={style.contaner}>
+        <div className={style.container}>
           <div className={style.content}>
             <div className={style.main}>
               <Details

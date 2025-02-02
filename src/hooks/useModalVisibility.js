@@ -9,7 +9,7 @@
  * toggleModal(); // Will toggle the modal visibility state
  */
 import { useDispatch } from 'react-redux';
-import { toggleModal } from '../store/slice/modalVisibilitySlice';
+import { toggleModal } from '../store/slice/modalSlice';
 const useModalVisibility = () => {
   const dispatch = useDispatch();
   return () => dispatch(toggleModal());
