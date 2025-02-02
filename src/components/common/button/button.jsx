@@ -37,9 +37,8 @@ const Button = ({
   return (
     <div
       onClick={handleClick}
-      style={{ color: color || '' }} // Apply custom color if provided
+      style={{ color: color, width: width }}
       className={buttonClasses}
-      style={{ width: width }}
     >
       <div className={style.content}>{children}</div>
     </div>
