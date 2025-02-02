@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: calc(var(--current-spacing-xs) * 0.3) calc(var(--current-spacing-xs));
+  padding: calc(var(--current-spacing-xs) * 0.6) calc(var(--current-spacing-xs));
   cursor: pointer;
   border-radius: var(--current-border-radius);
   border: solid 1px var(--border-color);
@@ -29,6 +29,14 @@
 .buttonText:hover {
   background-color: var(--background-color);
   color: var(--text-color);
+}
+.buttonDisable {
+  color: var(--border-color);
+  cursor: default;
+}
+.buttonDisable:hover {
+  color: var(--border-color);
+  cursor: default;
 }
 
 .content {
