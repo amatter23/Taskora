@@ -1,9 +1,12 @@
-.contaner {
+.container {
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding: var(--current-spacing-lg);
   height: 90%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .content {
   display: flex;
@@ -11,8 +14,4 @@
   width: 100%;
   padding: var(--current-spacing-sm);
   gap: var(--current-spacing-lg);
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
-

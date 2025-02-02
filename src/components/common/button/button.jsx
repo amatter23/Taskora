@@ -1,5 +1,5 @@
 /**
- * A reusable Button component with customizable styles
+ * A reusable Button component with customizable styles and functionality
  * @param {Object} props
  * @param {React.ReactNode} props.children - Content to be displayed inside the button
  * @param {Function} props.onClick - Click event handler
@@ -7,7 +7,11 @@
  * @param {string} props.bgColor - Background color class name
  * @param {string} props.textColor - Text color class name
  * @param {string} props.color - Custom color value
+ * @param {string|number} props.width - Button width value
+ * @param {boolean} props.disable - Controls if button is disabled
+ * @returns {JSX.Element} A styled button component
  */
+
 import style from './button.module.css';
 const Button = ({
   children,
@@ -17,29 +21,28 @@ const Button = ({
   textColor,
   color,
   width,
+  disable,
 }) => {
-  // Handle click events and forward them to the onClick prop
   const handleClick = e => {
     onClick(e);
   };
 
-  // Combine CSS classes conditionally
   const buttonClasses = [
-    style.button, // Base button style
-    isActive && style['buttonActive'], // Active state style
-    bgColor && style[`buttonBg`], // Background color style
-    textColor && style[`buttonText`], // Text color style
-    color && style['customeColor'], // Custom color style
+    style.button,
+    isActive && style['buttonActive'],
+    bgColor && style[`buttonBg`],
+    textColor && style[`buttonText`],
+    disable && style[`buttonDisable`],
+    color && style['customeColor'],
   ]
-    .filter(Boolean) // Remove falsy values
-    .join(' '); // Join classes with space
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div
-      onClick={handleClick}
-      style={{ color: color || '' }} // Apply custom color if provided
+      onClick={disable ? '' : handleClick}
+      style={{ color: color, width: width }}
       className={buttonClasses}
-      style={{ width: width }}
     >
       <div className={style.content}>{children}</div>
     </div>

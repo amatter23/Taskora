@@ -25,7 +25,7 @@ import Main from '../main/main';
 import Fields from '../fields/fields';
 import Footer from '../footer/footer';
 import { useCreateMutation } from '../../../../../../hooks/useCreateMutation';
-const NewContent = ({ projectData, type, onCancle, onCreate }) => {
+const NewContent = ({ projectData, type, onCancel, onCreate }) => {
   const [newContent, setNewContent] = useState({
     projectUuid: projectData?.uuid,
   });
@@ -95,7 +95,8 @@ const NewContent = ({ projectData, type, onCancle, onCreate }) => {
           }}
           OnCreate={handleCreate}
           type={type}
-          onCancle={onCancle}
+          onCancel={onCancel}
+          newContent={newContent}
         ></Footer>
       </div>
     </div>
