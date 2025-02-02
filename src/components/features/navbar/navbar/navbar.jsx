@@ -2,6 +2,7 @@ import style from './navbar.module.css';
 import Logo from '../logo/logo';
 import Image from '../image/image';
 import ChangeThemeButton from '../../../common/changeThemeButton/changeThemeButton';
+import MoreOptions from '../moreOptions/moreOptions/moreOptions';
 const Navbar = () => {
   return (
     <nav>
@@ -9,6 +10,7 @@ const Navbar = () => {
         <Logo></Logo>
       </div>
       <div className={style.actions}>
+        <MoreOptions></MoreOptions>
         <div className={style.changeTheme}>
           <ChangeThemeButton
             size={'calc(var(--current-font-size-sm)*2.2)'}
