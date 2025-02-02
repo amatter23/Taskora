@@ -22,7 +22,7 @@ const Footer = ({
   onCancel,
   newContent,
 }) => {
-  const displayed =
+  const disable =
     type === 'project'
       ? newContent?.name && newContent?.statusUuid && newContent?.color
         ? false
@@ -48,9 +48,9 @@ const Footer = ({
           <h5>Cancel</h5>
         </Button>
         <Button
-          displayed={displayed}
+          disable={disable}
           onClick={OnCreate}
-          bgColor={displayed ? false : true}
+          bgColor={disable ? false : true}
         >
           <MdLibraryAdd />
           <h5>Create</h5>
