@@ -22,13 +22,12 @@ const Modal = () => {
   const [isFullScreen, setFullScreen] = useState(false);
 
   // Don't render anything if modal is not visible
-  if (!isVisible) return null;
-  
+
   return (
-    <div className={style.container}>
+    <div className={isVisible ? style.container : style.hidden}>
       {/* Overlay background that closes modal when clicked */}
       <div
-        className={style.overlay}
+        className={isVisible ? style.overlay : style.hidden}
         onClick={() => {
           toggleVisibility();
           setComponent(null);
@@ -37,7 +36,7 @@ const Modal = () => {
       {/* Main modal container */}
       <main
         ref={modalRef}
-        className={style.modal}
+        className={isVisible ? style.modal : style.hidden}
         style={{ height: isFullScreen ? '80%' : '60%' }}
       >
         {/* Modal header with close and resize buttons */}
