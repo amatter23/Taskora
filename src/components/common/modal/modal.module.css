@@ -19,7 +19,7 @@
 .modal {
   background-color: var(--background-color);
   width: 100%;
-  height: 60%;
+  max-height: 60%;
   position: fixed;
   bottom: 0;
   transition: all 0.3s ease;
@@ -27,7 +27,6 @@
   display: flex;
   flex-direction: column;
   z-index: 999;
-  transition: all ease 0.3s;
 }
 .hidden {
   position: fixed;
@@ -40,10 +39,12 @@
   gap: var(--current-spacing-xs);
   border-bottom: solid 1px var(--border-color);
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
-@media (max-width: 640px) {
-  .modal {
-    height: 70%;
-  }
+.header h5 {
+  color: var(--light-text-color);
+}
+.header .actions {
+  display: flex;
+  gap: var(--current-spacing-xs);
 }
