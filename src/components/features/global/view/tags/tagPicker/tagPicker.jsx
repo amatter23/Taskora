@@ -36,13 +36,15 @@ import Button from '../../../../../common/button/button';
 import { useCreateTagMutation } from '../../../../../../store/services/tagsApi';
 import ColorSelect from '../../color/colorSelect';
 import { useCreateMutation } from '../../../../../../hooks/useCreateMutation';
-
+import useSearch from '../../../../../../hooks/useSearch';
 const TagPicker = ({ onChange }) => {
   const tags = useSelector(state => selectAllTags(state));
   const [newTag, setNewTag] = useState({
     name: '',
     color: 'var(--primary-color)',
   });
+  const search = useSearch({ list: tags, from: 'name', to: newTag });
+
   const { handleMutation } = useCreateMutation(useCreateTagMutation, {
     successMessage: `Tag added successfully`,
     onSuccess: () =>
@@ -91,7 +93,7 @@ const TagPicker = ({ onChange }) => {
           </Button>
         </div>
       </div>
-      {tags.map(tag => (
+      {search.map(tag => (
         <StatusLable
           key={tag.uuid}
           iconColor={tag.color + 70}
