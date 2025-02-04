@@ -41,7 +41,11 @@ const ProjectSelect = ({ onProjectSelect, Type, data, uuid }) => {
   };
 
   return (
-    <DropDown content={projectPicker} onChange={handleStatusSelect}>
+    <DropDown
+      maxHeight={'400px'}
+      content={projectPicker}
+      onChange={handleStatusSelect}
+    >
       <Type title={project?.name || 'Project'}>
         <FaProjectDiagram style={{ color: project?.color }} />
       </Type>

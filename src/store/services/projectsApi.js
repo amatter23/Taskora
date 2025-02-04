@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { tasksApi } from './tasksApi';
 
 export const projectsApi = createApi({
   reducerPath: 'projects',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Projects'],
+  tagTypes: ['Projects', 'Tasks'],
   endpoints: builder => ({
     getProjects: builder.query({
       query: () => 'projects',
@@ -25,10 +26,27 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: ['Projects'],
     }),
+    DeleteProject: builder.mutation({
+      query: project => ({
+        url: `projects/${project}`,
+        method: 'DELETE',
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          // Invalidate Tasks tags
+          dispatch(tasksApi.util.invalidateTags(['Tasks']));
+        } catch (error) {
+          console.error('Failed to invalidate tags:', error);
+        }
+      },
+      invalidatesTags: ['Projects'],
+    }),
   }),
 });
 export const {
   useGetProjectsQuery,
   useCreateProjectMutation,
   useUpdateProjectMutation,
+  useDeleteProjectMutation,
 } = projectsApi;

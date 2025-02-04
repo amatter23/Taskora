@@ -16,7 +16,6 @@
   --current-spacing-md: var(--spacing-mobile-md);
   --current-spacing-lg: var(--spacing-mobile-lg);
 
-
   /* Responsive font sizes */
   --font-size-mobile-sm: 0.75rem; /* 12px */
   --font-size-mobile-base: 0.875rem; /* 14px */
@@ -54,7 +53,7 @@
 
   /* Background color */
   --border-color: #d1d5db; /* Example color */
-  
+
   /* Text color */
   --text-color: #000000; /* Example color */
 
@@ -104,4 +103,8 @@
 
 .ant-picker-calendar .ant-picker-cell:hover .ant-picker-cell-inner {
   background: var(--hover-color) !important;
+}
+
+input {
+  all: unset;
 }
