@@ -48,7 +48,7 @@ const ProjectPicker = ({ onChange }) => {
       {projectFiltered.map((project) => (
         <div
           key={project.id}
-          className={style.projectLable}
+          className={style.projectLabel}
           onClick={() => onChange(project)}
         >
           <div className={style.title}>
