@@ -10,25 +10,20 @@
  */
 export const createEmptyStateMessages = (type = 'Project') => [
   {
-    title: "Start Something New",
-    subtitle: `Create your first ${type}`
+    subtitle: `Create your first ${type}`,
   },
   {
-    title: "Blank Canvas",
-    subtitle: `Begin your first ${type} here`
+    subtitle: `Begin your first ${type} here`,
   },
   {
-    title: "Nothing Here Yet",
-    subtitle: `Time to add your first ${type}`
+    subtitle: `Time to add your first ${type}`,
   },
   {
-    title: "Get Started",
-    subtitle: `Set up your first ${type}`
+    subtitle: `Set up your first ${type}`,
   },
   {
-    title: "Clean Slate",
-    subtitle: `Initialize your first ${type}`
-  }
+    subtitle: `Initialize your first ${type}`,
+  },
 ];
 
 export const useGetRandomEmptyState = (type = 'Project') => {

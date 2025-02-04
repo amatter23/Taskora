@@ -14,9 +14,6 @@ const LastFour = ({ type }) => {
   // Hooks for managing modal visibility and content
 
   const NewContent = useAddNewContent();
-  // Show empty state if no items exist
-  if (data.length === 0) return <EmptyState></EmptyState>;
-
   /**
    * Handler for opening new content modal
    */
@@ -29,11 +26,15 @@ const LastFour = ({ type }) => {
       {/* Header with button to add new content */}
       <Header onClick={handleClick} type={type}></Header>
       {/* Container for mini cards */}
-      <div className={style.miniCard}>
-        {data.map(item => (
-          <MiniCard key={item.name} type={type} uuid={item.uuid}></MiniCard>
-        ))}
-      </div>
+      {data.length === 0 ? (
+        <EmptyState type= {type}></EmptyState>
+      ) : (
+        <div className={style.miniCard}>
+          {data.map(item => (
+            <MiniCard key={item.name} type={type} uuid={item.uuid}></MiniCard>
+          ))}
+        </div>
+      )}
     </>
   );
 };
