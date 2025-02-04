@@ -15,11 +15,31 @@
   text-transform: uppercase;
   font-weight: 900;
 }
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--current-spacing-sm);
+}
+
+.filter{
+  display: flex;
+  flex-direction: row;
+  gap: var(--current-spacing-sm);
+}
+
 @media (max-width: 900px) {
   .boardContainer {
     flex-direction: column;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .header {
+    flex-direction: column;
+    gap: var(--current-spacing-md);
+  }
+  .filters {
+    flex-direction: column-reverse;
+
   }
 }

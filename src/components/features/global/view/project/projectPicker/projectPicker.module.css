@@ -1,4 +1,4 @@
-.projectLable {
+.projectLabel {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -7,18 +7,27 @@
   color: var(--text-color);
   cursor: pointer;
 }
-.projectLable:hover {
+.projectLabel:hover {
   background-color: var(--border-color);
 }
-.projectLable .title {
+.projectLabel .title {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: var(--current-spacing-xs);
 }
-.projectLable .icon {
-}
-.projectLable .title .icon {
+.projectLabel .title .icon {
   font-size: var(--current-font-size-lg);
+}
+.input {
+  background-color: var(--background-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  width: 100%;
+  border-radius: 0;
+  border-bottom: solid 1px var(--border-color);
+  outline: none;
+  padding: calc(var(--current-spacing-xs) / 2)
+    calc(var(--current-spacing-xs) / 2);
 }

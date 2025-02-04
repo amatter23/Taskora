@@ -30,14 +30,14 @@ const TaskView = ({ type, data }) => {
       <div className={style.header}>
         <div className={style.title}>
           {/* Show different arrow icons based on tasks availability */}
-          {data?.tasks.length === 0 ? (
+          {data?.tasks?.length === 0 ? (
             <IoIosArrowForward />
           ) : (
             <IoIosArrowDown />
           )}
 
           <h4>
-            Tasks <span>{data.tasks.length}</span>
+            Tasks <span>{data?.tasks?.length}</span>
           </h4>
         </div>
         {/* New Task button */}
@@ -58,7 +58,7 @@ const TaskView = ({ type, data }) => {
       {newTask === true ? (
         <div className={style.sub}>
           <NewContent
-            onCancle={() => {
+            onCancel={() => {
               setNewTask(false);
             }}
             onCreate={() => {
@@ -73,12 +73,12 @@ const TaskView = ({ type, data }) => {
       )}
 
       {/* Task list section */}
-      {data.tasks.length === 0 ? (
+      {data?.tasks?.length === 0 ? (
         // Show empty state when no tasks exist
         <EmptyState type={'Task'}></EmptyState>
       ) : (
         // Map through tasks and display them
-        data?.tasks.map(task => (
+        data?.tasks?.map(task => (
           <div className={style.task} key={task.id}>
             {/* Task details section */}
             <div className={style.titles}>
@@ -101,7 +101,7 @@ const TaskView = ({ type, data }) => {
                 data={task?.status}
                 Type={ButtonSelect}
                 uuid={task?.uuid}
-                type={'tsak'}
+                type={'task'}
               ></StatusSelect>
               <TagSelect
                 data={task?.tag}
