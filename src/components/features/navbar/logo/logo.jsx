@@ -4,8 +4,16 @@ import { LuListTodo } from 'react-icons/lu';
 const Logo = () => {
   return (
     <div className={style.logo}>
-      <LuListTodo className={style.icon} />
-      <h1>TO DO</h1>
+      <img
+        src='../../../../../logo.png'
+        style={{
+          width: '1.5rem',
+          height: '1.5rem',
+          color: 'var(--primary-color)',
+        }}
+        alt=''
+      />
+      <h1>Taskora</h1>
     </div>
   );
 };
