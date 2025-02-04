@@ -1,8 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const tasksApi = createApi({
   reducerPath: 'tasks',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Tasks'],
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: import.meta.env.PROD 
+      ? 'https://api.taskora.live/api/v1'
+      : '/api'
+  }),
   endpoints: builder => ({
     getTasks: builder.query({
       query: () => 'tasks',

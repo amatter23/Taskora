@@ -3,8 +3,12 @@ import { tasksApi } from './tasksApi';
 
 export const projectsApi = createApi({
   reducerPath: 'projects',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['Projects', 'Tasks'],
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.PROD
+      ? 'https://api.taskora.live/api/v1'
+      : '/api',
+  }),
+tagTypes: ['Projects', 'Tasks'],
   endpoints: builder => ({
     getProjects: builder.query({
       query: () => 'projects',
