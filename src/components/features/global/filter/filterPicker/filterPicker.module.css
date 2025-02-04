@@ -1,0 +1,72 @@
+.filterContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--current-spacing-sm);
+  align-items: center;
+  background-color: var(--hover-color);
+  border-radius: var(--current-border-radius);
+  color: var(--text-color);
+  cursor: pointer;
+  position: relative;
+  min-width: 140px;
+}
+.filterFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--current-spacing-sm);
+  padding: calc(var(--current-spacing-sm) / 2);
+  width: 100%;
+}
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--current-spacing-sm) / 2);
+  padding-bottom: calc(var(--current-spacing-sm) / 2);
+  border-bottom: solid var(--border-color) 1px;
+}
+.filterSection h4 {
+  color: var(--light-text-color);
+}
+.statusGrid {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--current-spacing-sm) / 4);
+}
+.statusOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(var(--current-spacing-sm) / 2);
+  border-radius: var(--current-border-radius);
+}
+.statusOption:hover {
+  background-color: var(--border-color);
+}
+.statusIndicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.dateGrid {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--current-spacing-sm) / 4);
+}
+.dateOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(var(--current-spacing-sm) / 2);
+  border-radius: var(--current-border-radius);
+}
+.dateOption:hover {
+  background-color: var(--border-color);
+}
+.active {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(var(--current-spacing-sm) / 2);
+  border-radius: var(--current-border-radius);
+  background-color: var(--border-color);
+}

@@ -1,0 +1,12 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  gap: var(--current-spacing-sm);
+  align-items: center;
+  background-color: var(--hover-color);
+  padding: calc(var(--current-spacing-sm) / 2);
+  border-radius: var(--current-border-radius);
+  color: var(--text-color);
+  cursor: pointer;
+  position: relative;
+}

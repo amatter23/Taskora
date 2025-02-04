@@ -1,0 +1,13 @@
+.input {
+  border: var(--border-color) solid 1px;
+  padding: calc(var(--current-spacing-sm) / 2);
+  border-radius: var(--current-border-radius);
+  background-color: var(--hover-color);
+  color: var(--text-color);
+}
+.input:hover {
+  background-color: var(--hover-color);
+}
+.input:focus {
+  background-color: var(--hover-color);
+}
