@@ -26,6 +26,7 @@ import DateSelect from '../../date/dateSelect/dateSelect';
 import StatusSelect from '../../status/statusSelect/statusSelect';
 import TagSelect from '../../tags/tagSelect/tagSelect';
 import ColorSelect from '../../color/colorSelect';
+import Delete from '../../delete/delete';
 import useHandleDates from '../../../../../../hooks/useHandleDates';
 const Labels = ({ data, uuid, type }) => {
   const handelDate = useHandleDates;
@@ -63,6 +64,9 @@ const Labels = ({ data, uuid, type }) => {
       ) : (
         ''
       )}
+      <div className={style.label}>
+        <Delete uuid={uuid} type={type}></Delete>
+      </div>
     </div>
   );
 };
