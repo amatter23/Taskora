@@ -27,7 +27,7 @@ const Footer = ({
       ? newContent?.name && newContent?.statusUuid && newContent?.color
         ? false
         : true
-      : newContent?.name && newContent?.statusUuid
+      : newContent?.name && newContent?.statusUuid && newContent?.projectUuid
       ? false
       : true;
   return (
@@ -44,7 +44,7 @@ const Footer = ({
         ''
       )}
       <div className={style.actions}>
-        <Button width={"100%"} onClick={onCancel} bgColor={true}>
+        <Button width={'100%'} onClick={onCancel} bgColor={true}>
           <h5>Cancel</h5>
         </Button>
         <Button
