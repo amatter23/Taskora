@@ -6,7 +6,6 @@ import DropDown from '../../dropDown/dropDown';
 import useContentUpdate from '../../../../../../hooks/useContentUpdate';
 const DateSelect = ({ onDateSelect, data, Type, uuid, type }) => {
   const { handleUpdate, isLoading } = useContentUpdate(type);
-  console.log(isLoading);
   const [date, setDate] = useState(data?.date);
   const [title, setTitle] = useState(data?.title);
   const handleDateSelect = async date => {
