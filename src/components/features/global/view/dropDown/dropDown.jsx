@@ -33,6 +33,7 @@ const DropDown = ({
   children,
   maxHeight,
   placement,
+  defaultValue,
 }) => {
   const [open, setOpen] = useState(false);
   const [dropdownPlacement, setDropdownPlacement] = useState(
@@ -47,7 +48,9 @@ const DropDown = ({
       placement={dropdownPlacement}
       open={open}
       onOpenChange={setOpen}
-      dropdownRender={() => <Content onChange={handleChange} />}
+      dropdownRender={() => (
+        <Content defaultValue={defaultValue} onChange={handleChange} />
+      )}
       trigger={trigger || ['click']}
       overlayStyle={{
         zIndex: 99,
