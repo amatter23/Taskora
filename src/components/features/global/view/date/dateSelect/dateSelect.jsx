@@ -5,7 +5,8 @@ import DatePicker from '../datePicker/datePicker';
 import DropDown from '../../dropDown/dropDown';
 import useContentUpdate from '../../../../../../hooks/useContentUpdate';
 const DateSelect = ({ onDateSelect, data, Type, uuid, type }) => {
-  const { handleUpdate } = useContentUpdate(type);
+  const { handleUpdate, isLoading } = useContentUpdate(type);
+  console.log(isLoading);
   const [date, setDate] = useState(data?.date);
   const [title, setTitle] = useState(data?.title);
   const handleDateSelect = async date => {
@@ -24,11 +25,12 @@ const DateSelect = ({ onDateSelect, data, Type, uuid, type }) => {
   };
   return (
     <DropDown
+      isLoading={isLoading}
       content={DatePicker}
       defaultValue={date}
       onChange={handleDateSelect}
     >
-      <Type title={date ? title : 'Date'}>
+      <Type isLoading={isLoading} title={date ? title : 'Date'}>
         {date ? (
           <MdDateRange
             color={

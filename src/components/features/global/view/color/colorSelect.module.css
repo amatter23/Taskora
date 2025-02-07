@@ -1,0 +1,6 @@
+.color {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
