@@ -6,14 +6,16 @@
  * @returns {JSX.Element} Loading spinner with text
  */
 import style from './loading.module.css';
-const Loading = ({ color, text }) => {
+const Loading = ({ containerHeight, size, color, text, width, height }) => {
   return (
-    <div className={style.container}>
+    <div style={{ height: containerHeight }} className={style.container}>
       {/* Spinner element with dynamic border color */}
       <div
         className={style.spinner}
         style={{
-          borderColor: `${color} `,
+          borderTop: ` solid ${size} ${color} `,
+          width: width,
+          height: height,
         }}
       />
       {/* Text display below spinner */}

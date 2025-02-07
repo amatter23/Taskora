@@ -11,8 +11,8 @@ const Navbar = () => {
         <Logo></Logo>
       </div>
       <div className={style.actions}>
-        <MoreOptions></MoreOptions>
         <Logout></Logout>
+        <MoreOptions></MoreOptions>
         <div className={style.changeTheme}>
           <ChangeThemeButton
             size={'calc(var(--current-font-size-sm)*2.2)'}

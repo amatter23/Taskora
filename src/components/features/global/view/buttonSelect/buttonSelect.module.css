@@ -1,6 +1,5 @@
 .button {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: calc(var(--current-spacing-xs) / 2);
@@ -15,4 +14,18 @@
 
 .button:hover {
   background-color: var(--border-color);
+}
+.buttonDisabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--current-spacing-xs) / 2);
+  width: fit-content;
+  padding: calc(var(--current-spacing-xs) / 1.5) calc(var(--current-spacing-xs));
+  color: var(--border-color);
+  cursor: default;
+  border: solid 1px var(--border-color);
+  border-radius: var(--current-border-radius);
+  background-color: var(--background-color);
+  cursor: normal;
 }

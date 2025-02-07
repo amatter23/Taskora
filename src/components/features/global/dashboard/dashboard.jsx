@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 const Dashboard = () => {
   const [nameSearch, setNameSearch] = useState();
   const [search, setSearch] = useState();
-  console.log(nameSearch, search);
   const searchRef = useRef(null);
   const userData = useSelector(state => state.auth.user);
   useHotkeys('ctrl+a', () => {

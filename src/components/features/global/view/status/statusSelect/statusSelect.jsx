@@ -1,6 +1,6 @@
 /**
  * A component that renders a dropdown for selecting status with a flag icon.
- * 
+ *
  * @component
  * @param {Object} props - The component props
  * @param {Function} props.onStatusSelect - Callback function triggered when a status is selected
@@ -8,7 +8,7 @@
  * @param {Object} props.data - Initial status data object
  * @param {string} props.uuid - Unique identifier for the status item
  * @param {string} props.type - Type identifier for content update handling
- * 
+ *
  * @returns {JSX.Element} A dropdown component with status selection functionality
  *
  * @example
@@ -29,7 +29,7 @@ import useContentUpdate from '../../../../../../hooks/useContentUpdate';
 const StatusSelect = ({ onStatusSelect, Type, data, uuid, type }) => {
   const handleNames = useHandleNames();
   const [status, setStatus] = useState(data);
-  const { handleUpdate } = useContentUpdate(type);
+  const { handleUpdate, isLoading } = useContentUpdate(type);
   const handleStatusSelect = async status => {
     if (uuid) {
       const updated = await handleUpdate(uuid, 'statusUuid', status.uuid);
@@ -44,8 +44,15 @@ const StatusSelect = ({ onStatusSelect, Type, data, uuid, type }) => {
   };
 
   return (
-    <DropDown content={StatusPicker} onChange={handleStatusSelect}>
-      <Type title={status ? handleNames(status?.name) : 'Status'}>
+    <DropDown
+      isLoading={isLoading}
+      content={StatusPicker}
+      onChange={handleStatusSelect}
+    >
+      <Type
+        isLoading={isLoading}
+        title={status ? handleNames(status?.name) : 'Status'}
+      >
         <RiFlag2Fill style={{ color: status?.color }} />
       </Type>
     </DropDown>

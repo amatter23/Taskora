@@ -5,6 +5,7 @@ import { useCreateMutation } from '../../../../../hooks/useCreateMutation';
 import useModalComponent from '../../../../../hooks/useModalComponent';
 import useModalVisibility from '../../../../../hooks/useModalVisibility';
 import style from './delete.module.css';
+import Loading from '../../../../common/loading /loading';
 const Delete = ({ uuid, type }) => {
   const setComponent = useModalComponent();
   const toggleVisibility = useModalVisibility();
@@ -13,7 +14,7 @@ const Delete = ({ uuid, type }) => {
     toggleVisibility();
     setComponent(null);
   };
-  const { handleMutation } = useCreateMutation(
+  const { handleMutation, isLoading } = useCreateMutation(
     type === 'project' ? useDeleteProjectMutation : useDeleteTaskMutation,
     {
       successMessage: `${type} Deleted successfully`,
@@ -27,7 +28,19 @@ const Delete = ({ uuid, type }) => {
       }}
       className={style.delete}
     >
-      <h5>Delete</h5>
+      <div className={style.title}>
+        <h5>Delete</h5>
+        {isLoading ? (
+          <Loading
+            color={'var(--text-color)'}
+            size={'3px'}
+            height={'0.5rem'}
+            width={'0.5rem'}
+            containerHeight={'100%'}
+          />
+        ) : null}
+      </div>
+
       <MdDelete color={'var(--error-color)'} />
     </div>
   );

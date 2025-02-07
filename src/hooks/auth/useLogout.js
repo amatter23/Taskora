@@ -8,13 +8,11 @@ const useLogout = () => {
   const toast = useToast();
   const [logoutMutation, { isLoading: logoutIsLoading }] = useLogoutMutation();
 
-  const handleLogout = () => {
-    const result = logoutMutation().unwrap();
+  const handleLogout = async () => {
+    logoutMutation();
     dispatch(logout());
     toast.success('Logged out successfully');
   };
-
   return { handleLogout, logoutIsLoading };
 };
-
 export default useLogout;

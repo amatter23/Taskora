@@ -51,6 +51,7 @@ const Fields = ({
       />
       {type === 'project' ? (
         <ColorSelect
+          width={'fit-content'}
           onColorSelect={data => {
             onColorSelect(data);
           }}

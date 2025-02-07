@@ -1,14 +1,3 @@
-/**
- * Footer component for new content creation forms
- * @component
- * @param {Object} props - Component props
- * @param {Function} props.onProjectSelect - Callback function when a project is selected, receives project uuid
- * @param {Array} props.projectData - Array of project data to populate the project selector
- * @param {Function} props.OnCreate - Callback function when create button is clicked
- * @param {string} props.type - Type of content being created ('task' or other)
- * @param {Function} props.onCancle - Callback function when cancel button is clicked
- * @returns {JSX.Element} Footer component with project selection (if type is 'task') and action buttons
- */
 import ProjectSelect from '../../project/projectSelect/projectSelect';
 import ButtonSelect from '../../buttonSelect/buttonSelect';
 import Button from '../../../../../common/button/button';
@@ -21,15 +10,17 @@ const Footer = ({
   type,
   onCancel,
   newContent,
+  isLoading,
 }) => {
   const disable =
-    type === 'project'
-      ? newContent?.name && newContent?.statusUuid && newContent?.color
-        ? false
-        : true
-      : newContent?.name && newContent?.statusUuid && newContent?.projectUuid
-      ? false
-      : true;
+    isLoading ||
+    (type === 'project'
+      ? !(newContent?.name && newContent?.statusUuid && newContent?.color)
+      : !(
+          newContent?.name &&
+          newContent?.statusUuid &&
+          newContent?.projectUuid
+        ));
   return (
     <div className={style.footer}>
       {type === 'task' ? (
@@ -53,7 +44,7 @@ const Footer = ({
           bgColor={disable ? false : true}
         >
           <MdLibraryAdd />
-          <h5>Create</h5>
+          <h5>{isLoading ? 'Creating...' : 'Create'}</h5>
         </Button>
       </div>
     </div>
