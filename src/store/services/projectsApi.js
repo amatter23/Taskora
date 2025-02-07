@@ -16,8 +16,7 @@ export const projectsApi = createApi({
       return headers;
     },
   }),
-  }),
-tagTypes: ['Projects', 'Tasks'],
+  tagTypes: ['Projects', 'Tasks'],
   endpoints: builder => ({
     getProjects: builder.query({
       query: () => 'projects',
