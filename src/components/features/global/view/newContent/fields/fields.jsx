@@ -1,5 +1,5 @@
 /**
- * A component that renders a collection of selection fields for various attributes
+ * A component that renders selection fields for content attributes management
  *
  * @component
  * @param {Object} props - The component props
@@ -7,18 +7,12 @@
  * @param {Function} props.onStatusSelect - Callback function when a status is selected
  * @param {Function} props.onTagSelect - Callback function when a tag is selected
  * @param {Function} props.onColorSelect - Callback function when a color is selected
- * @param {string} props.type - Type of content being created, determines if ColorSelect is shown
- * @returns {JSX.Element} A div containing various selection components
- *
- * @example
- * <Fields
- *   onDateSelect={(date) => handleDateSelect(date)}
- *   onStatusSelect={(statusId) => handleStatusSelect(statusId)}
- *   onTagSelect={(tagId) => handleTagSelect(tagId)}
- *   onColorSelect={(color) => handleColorSelect(color)}
- *   type="project"
- * />
+ * @param {string} props.type - Content type ('project' or other)
+ * @param {Object} props.defaultStatus - Default status data for StatusSelect
+ * @param {string} props.defaultColor - Default color for ColorSelect
+ * @returns {JSX.Element} Selection fields container
  */
+
 import StatusSelect from '../../status/statusSelect/statusSelect';
 import DateSelect from '../../date/dateSelect/dateSelect';
 import TagSelect from '../../tags/tagSelect/tagSelect';
@@ -31,6 +25,8 @@ const Fields = ({
   onTagSelect,
   onColorSelect,
   type,
+  defaultStatus,
+  defaultColor,
 }) => {
   return (
     <div className={style.fields}>
@@ -45,6 +41,7 @@ const Fields = ({
           onStatusSelect(data.uuid);
         }}
         Type={ButtonSelect}
+        data={defaultStatus}
       />
       <TagSelect
         onTagSelect={data => {
@@ -57,6 +54,7 @@ const Fields = ({
           onColorSelect={data => {
             onColorSelect(data);
           }}
+          data={defaultColor}
         />
       ) : (
         ''

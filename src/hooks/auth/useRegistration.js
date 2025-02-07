@@ -1,0 +1,37 @@
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/slice/authSlice';
+import { useRegisterMutation } from '../../store/services/authApi';
+import { useToast } from '../useToast';
+
+const useRegistration = () => {
+  const dispatch = useDispatch();
+  const toast = useToast();
+  const [registerMutation, { isLoading: registerIsLoading }] =
+    useRegisterMutation();
+
+  const handleRegister = async useInformation => {
+    try {
+      const result = await registerMutation(useInformation).unwrap();
+      if (result.data) {
+        dispatch(
+          login({
+            user: result.data,
+            accessToken: result.tokens.accessToken,
+            refreshToken: result.tokens.refreshToken,
+          })
+        );
+        toast.success('Registered successfully');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        return true;
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.data?.errors[0].message || 'Registration failed');
+      return false;
+    }
+  };
+
+  return { handleRegister, registerIsLoading };
+};
+
+export default useRegistration;

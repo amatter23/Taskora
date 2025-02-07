@@ -4,9 +4,14 @@
   height: 95%;
   gap: var(--current-spacing-lg);
   padding: var(--current-spacing-lg) 0;
-  
 }
-
+.emptyContent {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 900px) {
   .boardContainer {
     flex-direction: column;

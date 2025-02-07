@@ -4,7 +4,14 @@ export const tagsApi = createApi({
   baseQuery: fetchBaseQuery({ 
     baseUrl: import.meta.env.PROD 
       ? 'https://todo-list-api-production-1907.up.railway.app/api/v1'
-      : '/api'
+      : '/api',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.accessToken;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   endpoints: builder => ({
     getTags: builder.query({

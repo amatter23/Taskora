@@ -4,7 +4,14 @@ export const tasksApi = createApi({
   baseQuery: fetchBaseQuery({ 
     baseUrl: import.meta.env.PROD 
       ? 'https://api.taskora.live/api/v1'
-      : '/api'
+      : '/api',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.accessToken;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   endpoints: builder => ({
     getTasks: builder.query({
