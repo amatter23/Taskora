@@ -3,7 +3,7 @@ export const tagsApi = createApi({
   reducerPath: 'tags',
   baseQuery: fetchBaseQuery({ 
     baseUrl: import.meta.env.PROD 
-      ? 'https://todo-list-api-production-1907.up.railway.app/api/v1'
+      ? 'https://api.taskora.live/api/v1'
       : '/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.accessToken;

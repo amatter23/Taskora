@@ -5,9 +5,7 @@ export const auth = 'Bearer ' + localStorage.getItem('token');
 export const projectsApi = createApi({
   reducerPath: 'projects',
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.PROD
-      ? 'https://api.taskora.live/api/v1'
-      : '/api',baseUrl: '/api',
+    baseUrl: import.meta.env.PROD ? 'https://api.taskora.live/api/v1' : '/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.accessToken;
       if (token) {

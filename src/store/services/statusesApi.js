@@ -3,7 +3,7 @@ export const statusesApi = createApi({
   reducerPath: 'statuses',
   baseQuery: fetchBaseQuery({ 
     baseUrl: import.meta.env.PROD 
-      ? 'https://todo-list-api-production-1907.up.railway.app/api/v1'
+      ? 'https://api.taskora.live/api/v1'
       : '/api'
   }),
   endpoints: builder => ({
