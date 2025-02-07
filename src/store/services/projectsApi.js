@@ -1,9 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { tasksApi } from './tasksApi';
+export const auth = 'Bearer ' + localStorage.getItem('token');
 
 export const projectsApi = createApi({
   reducerPath: 'projects',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/api',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.accessToken;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
+
   tagTypes: ['Projects', 'Tasks'],
   endpoints: builder => ({
     getProjects: builder.query({

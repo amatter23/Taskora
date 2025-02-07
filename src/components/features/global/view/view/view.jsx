@@ -48,8 +48,6 @@ const View = ({ uuid, type }) => {
       : selectTaskWithUuid(state, uuid)
   );
 
-  const labels = <Labels uuid={uuid} type={type} data={data} />;
-
   return (
     <>
       {isMobile ? (
@@ -64,7 +62,7 @@ const View = ({ uuid, type }) => {
                 type={type}
               />
             </div>
-            {labels}
+            <Labels uuid={uuid} type={type} data={data} />
             {type === 'project' && <TaskView type={type} data={data} />}
           </div>
         </div>
@@ -82,7 +80,7 @@ const View = ({ uuid, type }) => {
             </div>
             {type === 'project' && <TaskView type={type} data={data} />}
           </div>
-          {labels}
+          <Labels uuid={uuid} type={type} data={data} />
         </div>
       )}
     </>

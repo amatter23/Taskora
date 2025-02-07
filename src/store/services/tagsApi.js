@@ -1,7 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const tagsApi = createApi({
   reducerPath: 'tags',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/api',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.accessToken;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
+
   endpoints: builder => ({
     getTags: builder.query({
       query: () => 'tags',

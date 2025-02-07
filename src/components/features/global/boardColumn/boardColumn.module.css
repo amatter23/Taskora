@@ -9,27 +9,34 @@
 .header {
   display: flex;
   flex-direction: row;
-  gap: var(--current-spacing-xs);
+  gap: var(--current-spacing-sm);
   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  border-bottom: solid 3px red;
-  padding-bottom: var(--current-spacing-xs);
+}
+.title {
+  display: flex;
+  gap: var(--current-spacing-sm);
 }
 .count {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 1px var(--border-color);
   border-radius: var(--current-border-radius);
-  padding: calc(var(--current-spacing-xs) / 4) calc(var(--current-spacing-sm));
   gap: calc(var(--current-spacing-xs) / 2);
+  color: var(--light-text-color);
+}
+.color {
+  height: 3px;
+  width: 50%;
+  border-radius: var(--current-border-radius);
 }
 .cardsContainer {
   display: flex;
   flex-direction: column;
   justify-content: start;
   overflow-y: scroll;
-  padding: var(--current-spacing-sm) var(--current-spacing-sm);
+  padding: var(--current-spacing-sm) 0;
   gap: var(--current-spacing-xs);
   width: 100%;
   height: 90%;

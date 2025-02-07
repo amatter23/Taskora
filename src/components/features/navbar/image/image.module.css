@@ -10,6 +10,20 @@
   height: 40px;
   border-radius: 50%;
 }
+.pic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  border: solid 1px var(--background-color);
+}
+.pic h1 {
+  font-weight: 600;
+}
 @media (max-width: 900px) {
   .profile img {
     width: 30px;
