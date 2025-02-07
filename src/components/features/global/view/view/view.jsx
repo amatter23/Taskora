@@ -1,24 +1,3 @@
-/**
- * A responsive view component that displays either project or task details.
- *
- * @component
- * @param {Object} props - Component props
- * @param {string} props.uuid - Unique identifier for the project or task
- * @param {('project'|'task')} props.type - Determines whether to display project or task view
- *
- * @returns {JSX.Element} A responsive container with details, labels, and task view (for projects)
- *
- * @example
- * <View uuid="123" type="project" />
- *
- * @description
- * This component:
- * - Handles responsive layout for mobile/desktop views
- * - Fetches project or task data based on UUID and type
- * - Renders Details component with project/task information
- * - Shows Labels component in different positions based on viewport
- * - Conditionally renders TaskView for project type
- */
 import { useState, useEffect } from 'react';
 import style from './view.module.css';
 import { selectProjectWithUuid } from '../../../../../store/selectors/projects/projectwithUuidSelector';

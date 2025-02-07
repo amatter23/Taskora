@@ -10,3 +10,7 @@
 .delete:hover {
   background-color: var(--border-color);
 }
+.title {
+  display: flex;
+  gap: var(--current-spacing-xs);
+}

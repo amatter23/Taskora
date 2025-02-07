@@ -79,7 +79,7 @@ const TaskView = ({ type, data }) => {
       ) : (
         // Map through tasks and display them
         data?.tasks?.map(task => (
-          <div className={style.task} key={task.id}>
+          <div className={style.task} key={task.uuid}>
             {/* Task details section */}
             <div className={style.titles}>
               <Details

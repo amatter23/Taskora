@@ -17,7 +17,7 @@ const NewContent = ({ projectData, type, onCancel, onCreate }) => {
     statusUuid: randomStatus?.uuid,
   });
 
-  const { handleMutation } = useCreateMutation(
+  const { handleMutation, isLoading } = useCreateMutation(
     type === 'project' ? useCreateProjectMutation : useCreateTaskMutation,
     {
       successMessage: `${type} added successfully`,
@@ -85,6 +85,7 @@ const NewContent = ({ projectData, type, onCancel, onCreate }) => {
           type={type}
           onCancel={onCancel}
           newContent={newContent}
+          isLoading={isLoading}
         ></Footer>
       </div>
     </div>

@@ -12,3 +12,20 @@
 .label:hover {
   background-color: var(--border-color);
 }
+.labelDisabled {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(var(--current-spacing-xs) / 1.5) calc(var(--current-spacing-xs));
+  cursor: normal;
+  border-radius: var(--current-border-radius);
+  gap: var(--current-spacing-xs);
+  color: var(--border-color);
+  cursor: default;
+  background-color: var(--background-color);
+}
+.title {
+  display: flex;
+  gap: var(--current-spacing-xs);
+}
