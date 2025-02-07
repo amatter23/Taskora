@@ -1,22 +1,3 @@
-/**
- * A component for creating new content (either a project or task)
- * @component
- * @param {Object} props - Component props
- * @param {Object} props.projectData - Data about the current project
- * @param {string} props.projectData.uuid - Unique identifier of the project
- * @param {('project'|'task')} props.type - Type of content being created
- * @param {Function} props.onCancle - Callback function when creation is cancelled
- * @param {Function} props.onCreate - Callback function when creation is successful
- * @returns {JSX.Element} A form interface for creating new content
- *
- * @example
- * <NewContent
- *   projectData={projectData}
- *   type="task"
- *   onCancle={() => {}}
- *   onCreate={() => {}}
- * />
- */
 import { useState } from 'react';
 import style from './newContent.module.css';
 import { useCreateTaskMutation } from '../../../../../../store/services/tasksApi';
@@ -25,9 +6,15 @@ import Main from '../main/main';
 import Fields from '../fields/fields';
 import Footer from '../footer/footer';
 import { useCreateMutation } from '../../../../../../hooks/useCreateMutation';
+import { useSelector } from 'react-redux';
+import { selectAllStatuses } from '../../../../../../store/selectors/statuses/allStatusesSelector';
 const NewContent = ({ projectData, type, onCancel, onCreate }) => {
+  const statuses = useSelector(selectAllStatuses);
+  const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
   const [newContent, setNewContent] = useState({
     projectUuid: projectData?.uuid,
+    color: '#306bff',
+    statusUuid: randomStatus?.uuid,
   });
 
   const { handleMutation } = useCreateMutation(
@@ -77,13 +64,14 @@ const NewContent = ({ projectData, type, onCancel, onCreate }) => {
             });
           }}
           onColorSelect={color => {
-            console.log('test');
             setNewContent({
               ...newContent,
               color: color,
             });
           }}
           type={type}
+          defaultStatus={randomStatus}
+          defaultColor={'#306bff'}
         ></Fields>
         <Footer
           projectData={projectData}
