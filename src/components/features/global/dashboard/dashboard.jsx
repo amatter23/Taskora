@@ -5,10 +5,13 @@ import { useState, useRef } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import Search from '../filter/search/search';
 import Filter from '../filter/filter/filter';
+import { useSelector } from 'react-redux';
 const Dashboard = () => {
   const [nameSearch, setNameSearch] = useState();
   const [search, setSearch] = useState();
+  console.log(nameSearch, search);
   const searchRef = useRef(null);
+  const userData = useSelector(state => state.auth.user);
   useHotkeys('ctrl+a', () => {
     searchRef.current?.focus();
   });
@@ -19,7 +22,7 @@ const Dashboard = () => {
     <main className={style.dashboardContainer}>
       <header className={style.header}>
         <h1>
-          Welcome back <span className={style.name}>John Doe</span>
+          Welcome back <span className={style.name}>{userData.name}</span>
         </h1>
         <div className={style.filters}>
           <Search
