@@ -1,8 +1,17 @@
 import style from './image.module.css';
+import { useSelector } from 'react-redux';
+
 const Image = ({ onClick }) => {
+  const userData = useSelector(state => state.auth.user);
   return (
     <div onClick={onClick} className={style.profile}>
-      <img src='https://media.licdn.com/dms/image/v2/D4D03AQEQ-tQyPnWMJQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710320366583?e=1740009600&v=beta&t=tNGgkWPxAaHOU6BU2UABVN1Xi60eMmngm6wBV_pOth8' />
+      {userData.picture ? (
+        <img src={userData.picture} />
+      ) : (
+        <div className={style.pic}>
+          <h1>{userData.name ? userData.name.charAt(0).toUpperCase() : ''}</h1>
+        </div>
+      )}
     </div>
   );
 };
