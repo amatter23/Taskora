@@ -2,7 +2,9 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { logout, login } from '../slice/authSlice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api',
+  baseUrl: import.meta.env.PROD 
+      ? 'https://api.taskora.live/api/v1'
+      : '/api',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
     if (token && !headers.get('isRefreshRequest')) {
