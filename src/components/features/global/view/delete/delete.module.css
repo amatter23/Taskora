@@ -6,9 +6,10 @@
   padding: calc(var(--current-spacing-xs) / 1.5) calc(var(--current-spacing-xs));
   cursor: pointer;
   border-radius: var(--current-border-radius);
+  gap: var(--current-spacing-xs);
 }
 .delete:hover {
-  background-color: var(--border-color);
+  background-color: var(--error-color);
 }
 .title {
   display: flex;

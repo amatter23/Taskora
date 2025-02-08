@@ -10,6 +10,7 @@ import TagSelect from '../../tags/tagSelect/tagSelect';
 import Details from '../../details/details';
 import useHandleDates from '../../../../../../hooks/useHandleDates';
 import EmptyState from '../../../../../common/emptyState/emptyState';
+import Delete from '../../delete/delete';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useState } from 'react';
 import Filter from '../../../filter/filter/filter';
@@ -112,6 +113,9 @@ const TaskView = ({ type, data }) => {
                 type={'task'}
                 uuid={task?.uuid}
               ></TagSelect>
+              <div>
+                <Delete type={'task'} uuid={task?.uuid}></Delete>
+              </div>
             </div>
           </div>
         ))
