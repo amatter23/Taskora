@@ -6,9 +6,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://api.taskora.live/',
+        target: 'https://api.taskora.live/api/v1',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
