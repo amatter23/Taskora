@@ -1,43 +1,74 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { ColorPicker } from 'antd';
 import useProjectUpdate from '../../../../../hooks/useContentUpdate';
 import Loading from '../../../../common/loading /loading';
 import style from './colorSelect.module.css';
+
 const ColorSelect = ({ onColorSelect, data, uuid, type, width }) => {
   const { handleUpdate, isLoading } = useProjectUpdate(type);
-
   const [color, setColor] = useState(data);
-  const handleColorSelect = async color => {
-    if (uuid) {
-      const updated = await handleUpdate(uuid, 'color', color);
-      if (updated) {
-        setColor(color);
-        onColorSelect(color);
+  const [newColor, setNewColor] = useState(data);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+  const handleColorSelect = async () => {
+    if (color === newColor) {
+      handleClose();
+      return;
+    }
+    try {
+      if (uuid) {
+        const updated = await handleUpdate(uuid, 'color', newColor);
+        if (updated) {
+          setColor(newColor);
+          onColorSelect?.(newColor);
+          handleClose();
+        }
+      } else {
+        setColor(newColor);
+        onColorSelect?.(newColor);
       }
-    } else {
-      setColor(color);
-      onColorSelect(color);
+    } catch (error) {
+      console.error('Color update failed:', error);
     }
   };
+
+  const renderColorText = color => (
+    <span
+      style={{
+        color: 'var(--text-color)',
+      }}
+    >
+      (
+      {color && typeof color.toHexString === 'function'
+        ? color.toHexString()
+        : 'Invalid color'}
+      )
+    </span>
+  );
+
   return (
-    <div style={{ width: width }} className={style.color}>
+    <div className={style.color}>
       <ColorPicker
+        className={style.colorPicker}
         disabled={isLoading}
-        style={{
-          backgroundColor: 'var(--background-color)',
-          border: 'none',
+        open={isOpen}
+        onOpenChange={open => {
+          if (!isLoading) {
+            setIsOpen(open);
+          }
+          if (!open) {
+            handleColorSelect();
+          }
         }}
-        defaultValue={color}
-        showText={color => (
-          <span style={{ color: 'var(--text-color)' }}>
-            ({color.toHexString()})
-          </span>
-        )}
-        onChangeComplete={color => {
-          handleColorSelect(color.toHexString());
+        value={newColor}
+        onChange={color => {
+          setNewColor(color.toHexString());
         }}
+        showText={renderColorText}
       />
-      {isLoading ? (
+      {isLoading && (
         <Loading
           color={'var(--text-color)'}
           size={'3px'}
@@ -45,7 +76,7 @@ const ColorSelect = ({ onColorSelect, data, uuid, type, width }) => {
           width={'0.5rem'}
           containerHeight={'100%'}
         />
-      ) : null}
+      )}
     </div>
   );
 };

@@ -50,13 +50,15 @@ const Fields = ({
         Type={ButtonSelect}
       />
       {type === 'project' ? (
-        <ColorSelect
-          width={'fit-content'}
-          onColorSelect={data => {
-            onColorSelect(data);
-          }}
-          data={defaultColor}
-        />
+        <div>
+          <ColorSelect
+            width={'fit-content'}
+            onColorSelect={data => {
+              onColorSelect(data);
+            }}
+            data={defaultColor}
+          />
+        </div>
       ) : (
         ''
       )}
