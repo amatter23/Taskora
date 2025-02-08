@@ -1,18 +1,10 @@
 // src/store/services/authApi.js
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './baseQuery';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.PROD ? 'https://api.taskora.live/api/v1/' : '/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.accessToken;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ['Auth'],
   endpoints: builder => ({
     login: builder.mutation({
@@ -41,6 +33,12 @@ export const authApi = createApi({
         method: 'GET',
       }),
     }),
+    refreshToken: builder.mutation({
+      query: ({ refreshToken }) => ({
+        url: 'auth/refresh-token',
+        method: 'GET',
+      }),
+    }),
     getTokenByCode: builder.mutation({
       query: code => ({
         url: 'auth/google/callback',
@@ -56,5 +54,6 @@ export const {
   useLogoutMutation,
   useRegisterMutation,
   useGetUserMutation,
+  useRefreshTokenMutation,
   useGetTokenByCodeMutation,
 } = authApi;

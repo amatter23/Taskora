@@ -1,18 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './baseQuery';
+
 export const tasksApi = createApi({
   reducerPath: 'tasks',
-  baseQuery: fetchBaseQuery({ 
-    baseUrl: import.meta.env.PROD 
-      ? 'https://api.taskora.live/api/v1'
-      : '/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.accessToken;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
+  tagTypes: ['Tasks'],
   endpoints: builder => ({
     getTasks: builder.query({
       query: () => 'tasks',
