@@ -5,7 +5,6 @@ export const tagsApi = createApi({
   reducerPath: 'tags',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['tags'],
-
   endpoints: builder => ({
     getTags: builder.query({
       query: () => 'tags',
