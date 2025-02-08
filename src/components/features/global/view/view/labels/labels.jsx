@@ -58,9 +58,7 @@ const Labels = ({ data, uuid, type }) => {
         ></TagSelect>
       </div>
       {type === 'project' ? (
-        <div className={style.label}>
-          <ColorSelect data={data?.color} uuid={uuid} type={type}></ColorSelect>
-        </div>
+        <ColorSelect data={data?.color} uuid={uuid} type={type}></ColorSelect>
       ) : (
         ''
       )}

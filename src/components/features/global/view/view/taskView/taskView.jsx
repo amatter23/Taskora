@@ -1,4 +1,3 @@
-// Import necessary styles, components and icons
 import style from './taskView.module.css';
 import Button from '../../../../../common/button/button';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -11,50 +10,62 @@ import TagSelect from '../../tags/tagSelect/tagSelect';
 import Details from '../../details/details';
 import useHandleDates from '../../../../../../hooks/useHandleDates';
 import EmptyState from '../../../../../common/emptyState/emptyState';
+import Delete from '../../delete/delete';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useState } from 'react';
-/** 
-  TaskView component displays a list of tasks with their details and actions
-// @param {string} type - The type of view
-// @param {object} data - Contains tasks data and project information
-*/
+import Filter from '../../../filter/filter/filter';
+import { useEffect } from 'react';
 const TaskView = ({ type, data }) => {
-  // Initialize date handling utility
-  const handelDate = useHandleDates;
-  // State to control new task form visibility
+  const handleDate = useHandleDates;
   const [newTask, setNewTask] = useState(false);
-
+  const [dataSearch, setDataSearch] = useState(data?.tasks);
+  const getData = e => {
+    if (!data?.tasks) return;
+    if (!e?.status?.name) {
+      setDataSearch(data.tasks);
+      return;
+    }
+    setDataSearch(() => {
+      return data.tasks.filter(task => {
+        return task.status.name === e.status.name;
+      });
+    });
+  };
+  useEffect(() => {
+    setDataSearch(data?.tasks);
+  }, [data?.tasks]);
   return (
     <div className={style.tasks}>
-      {/* Header section with title and new task button */}
       <div className={style.header}>
         <div className={style.title}>
-          {/* Show different arrow icons based on tasks availability */}
-          {data?.tasks?.length === 0 ? (
+          {dataSearch?.length === 0 ? (
             <IoIosArrowForward />
           ) : (
             <IoIosArrowDown />
           )}
 
           <h4>
-            Tasks <span>{data?.tasks?.length}</span>
+            Tasks <span>{dataSearch?.length}</span>
           </h4>
         </div>
-        {/* New Task button */}
-        <div>
-          <Button
-            bgColor={true}
-            onClick={() => {
-              setNewTask(!newTask);
-            }}
-          >
-            <IoMdAdd />
-            <h5>New Task</h5>
-          </Button>
+        <div className={style.actions}>
+          <div>
+            <Button
+              bgColor={true}
+              onClick={() => {
+                setNewTask(!newTask);
+              }}
+            >
+              <IoMdAdd />
+              <h5>New Task</h5>
+            </Button>
+          </div>
+          <div>
+            <Filter defaultValue={'status'} searchData={getData} />
+          </div>
         </div>
       </div>
 
-      {/* New task form - shown when newTask state is true */}
       {newTask === true ? (
         <div className={style.sub}>
           <NewContent
@@ -68,19 +79,13 @@ const TaskView = ({ type, data }) => {
             projectData={data}
           ></NewContent>
         </div>
-      ) : (
-        ''
-      )}
+      ) : null}
 
-      {/* Task list section */}
-      {data?.tasks?.length === 0 ? (
-        // Show empty state when no tasks exist
+      {dataSearch?.length === 0 ? (
         <EmptyState type={'Task'}></EmptyState>
       ) : (
-        // Map through tasks and display them
-        data?.tasks?.map(task => (
+        dataSearch?.map(task => (
           <div className={style.task} key={task.uuid}>
-            {/* Task details section */}
             <div className={style.titles}>
               <Details
                 uuid={task?.uuid}
@@ -89,10 +94,9 @@ const TaskView = ({ type, data }) => {
                 type={type}
               ></Details>
             </div>
-            {/* Task actions section (date, status, tags) */}
             <div className={style.actions}>
               <DateSelect
-                data={handelDate(task?.dueDate)}
+                data={handleDate(task?.dueDate)}
                 Type={ButtonSelect}
                 type={'task'}
                 uuid={task?.uuid}
@@ -109,6 +113,9 @@ const TaskView = ({ type, data }) => {
                 type={'task'}
                 uuid={task?.uuid}
               ></TagSelect>
+              <div>
+                <Delete type={'task'} uuid={task?.uuid}></Delete>
+              </div>
             </div>
           </div>
         ))

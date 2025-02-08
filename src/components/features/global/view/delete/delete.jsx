@@ -41,7 +41,7 @@ const Delete = ({ uuid, type }) => {
         ) : null}
       </div>
 
-      <MdDelete color={'var(--error-color)'} />
+      <MdDelete />
     </div>
   );
 };

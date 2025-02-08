@@ -18,6 +18,12 @@
 .tasks .header span {
   font-weight: 900;
 }
+.tasks .header .actions{
+  display: flex;
+  gap: var(--current-spacing-sm);
+  align-items: center;
+  justify-content: center;
+}
 .tasks .task {
   display: flex;
   flex-direction: column;

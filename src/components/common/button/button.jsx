@@ -22,6 +22,7 @@ const Button = ({
   color,
   width,
   disable,
+  title,
 }) => {
   const handleClick = e => {
     onClick(e);
@@ -43,6 +44,7 @@ const Button = ({
       onClick={disable ? '' : handleClick}
       style={{ color: color, width: width }}
       className={buttonClasses}
+      title={title}
     >
       <div className={style.content}>{children}</div>
     </div>

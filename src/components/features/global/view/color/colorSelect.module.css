@@ -1,6 +1,53 @@
 .color {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--background-color);
+  border-radius: calc(var(--current-spacing-xs) / 2);
+  border: var(--border-color) solid 1px;
+  padding: 0 calc(var(--current-spacing-xs) * 0.5);
+}
+.colorPicker {
+  display: flex;
   justify-content: start;
   align-items: center;
   width: 100%;
+  background-color: var(--background-color);
+  border: none !important;
+  border-radius: var(--current-spacing-xs);
+  box-shadow: none !important;
+}
+
+/* Override all Ant Design ColorPicker states */
+.colorPicker :global(.ant-color-picker-trigger),
+.colorPicker :global(.ant-color-picker-trigger-active),
+.colorPicker
+  :global(.css-dev-only-do-not-override-1htoz2s .ant-color-picker-trigger),
+.colorPicker
+  :global(
+    .css-dev-only-do-not-override-1htoz2s .ant-color-picker-trigger-active
+  ),
+:global(.ant-color-picker-trigger),
+:global(.ant-color-picker-trigger-active) {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-color: var(--background-color) !important;
+}
+
+/* Override hover, focus, and active states */
+.colorPicker:hover,
+.colorPicker:focus,
+.colorPicker:active,
+.colorPicker :global(.ant-color-picker-trigger):hover,
+.colorPicker :global(.ant-color-picker-trigger):focus,
+.colorPicker :global(.ant-color-picker-trigger):active,
+.colorPicker :global(.ant-color-picker-trigger-active):hover,
+.colorPicker :global(.ant-color-picker-trigger-active):focus,
+.colorPicker :global(.ant-color-picker-trigger-active):active {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: var(--background-color) !important;
 }
