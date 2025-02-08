@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaFilter } from 'react-icons/fa6';
 import FilterPicker from '../filterPicker/filterPicker';
 import useHandleNames from '../../../../../hooks/useHandleNames';
-const Filter = ({ searchData }) => {
+const Filter = ({ searchData, defaultValue }) => {
   const handelNames = useHandleNames();
   const [search, setSearch] = useState();
   const handelSearchData = e => {
@@ -17,6 +17,7 @@ const Filter = ({ searchData }) => {
       <DropDown
         onChange={handelSearchData}
         content={FilterPicker}
+        defaultValue={defaultValue}
         placement={'bottom'}
       >
         <div className={style.filter}>
