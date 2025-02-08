@@ -1,6 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import { projectsApi } from './services/projectsApi';
 import { tasksApi } from './services/tasksApi';
 import { tagsApi } from './services/tagsApi';
@@ -11,11 +10,17 @@ import themeReducer from './slice/themeSlice';
 import modalReducer from './slice/modalSlice';
 import modalComponentReducer from './slice/modalComponentSlice';
 import authReducer from './slice/authSlice';
-
+import { CookieStorage } from 'redux-persist-cookie-storage';
+import Cookies from 'js-cookie';
 const persistConfig = {
   key: 'root',
-  storage,
-  whitelist: ['auth', 'theme'], 
+  storage: new CookieStorage(Cookies, {
+    expiration: {
+      default: 7 * 24 * 60 * 60 * 1000, // 7 days
+    },
+    secure: true, // Set to false if not using HTTPS
+  }),
+  whitelist: ['auth', 'theme'],
 };
 
 const rootReducer = combineReducers({
