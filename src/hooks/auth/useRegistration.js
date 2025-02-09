@@ -25,7 +25,6 @@ const useRegistration = () => {
         return true;
       }
     } catch (error) {
-      console.log(error);
       toast.error(error?.data?.errors[0].message || 'Registration failed');
       return false;
     }

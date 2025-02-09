@@ -43,6 +43,9 @@ const useLogin = () => {
             user: result.data,
             accessToken: result.tokens.accessToken,
             refreshToken: result.tokens.refreshToken,
+            accessTokenExpire: new Date(
+              new Date().getTime() + 15 * 60 * 1000 // 15 minutes
+            ),
           })
         );
         window.history.replaceState({}, document.title, '/');
