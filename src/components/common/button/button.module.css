@@ -31,6 +31,7 @@
   color: var(--text-color);
 }
 .buttonDisable {
+  background-color: var(--background-color);
   color: var(--border-color);
   cursor: default;
 }

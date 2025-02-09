@@ -1,17 +1,3 @@
-/**
- * A reusable Button component with customizable styles and functionality
- * @param {Object} props
- * @param {React.ReactNode} props.children - Content to be displayed inside the button
- * @param {Function} props.onClick - Click event handler
- * @param {boolean} props.isActive - Controls active state styling
- * @param {string} props.bgColor - Background color class name
- * @param {string} props.textColor - Text color class name
- * @param {string} props.color - Custom color value
- * @param {string|number} props.width - Button width value
- * @param {boolean} props.disable - Controls if button is disabled
- * @returns {JSX.Element} A styled button component
- */
-
 import style from './button.module.css';
 const Button = ({
   children,
@@ -23,6 +9,7 @@ const Button = ({
   width,
   disable,
   title,
+  display,
 }) => {
   const handleClick = e => {
     onClick(e);
@@ -42,7 +29,7 @@ const Button = ({
   return (
     <div
       onClick={disable ? '' : handleClick}
-      style={{ color: color, width: width }}
+      style={{ display: display, color: color, width: width }}
       className={buttonClasses}
       title={title}
     >
