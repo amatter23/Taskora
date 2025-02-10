@@ -6,6 +6,6 @@ const selectStatuses = state =>
 export const selectStatusWithUuid = createSelector(
   [selectStatuses, (state, uuid) => uuid],
   (statuses, uuid) => {
-    return statuses?.data?.find(status => status.uuid === uuid);
+    return statuses?.data?.find(status => status?.uuid === uuid);
   }
 );
