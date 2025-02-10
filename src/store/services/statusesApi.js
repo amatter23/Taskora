@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './baseQuery';
+
 export const statusesApi = createApi({
   reducerPath: 'statuses',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  baseQuery: baseQueryWithReauth,
   endpoints: builder => ({
     getStatuses: builder.query({
       query: () => 'statuses',
