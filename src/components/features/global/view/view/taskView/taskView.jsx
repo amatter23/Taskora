@@ -91,7 +91,7 @@ const TaskView = ({ type, data }) => {
                 uuid={task?.uuid}
                 name={task?.name}
                 description={task?.description}
-                type={type}
+                type={'task'}
               ></Details>
             </div>
             <div className={style.actions}>
