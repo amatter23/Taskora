@@ -33,11 +33,11 @@ export const selectProjectsFullData = createSelector(
   [selectProjects, selectTasks, selectStatuses, selectTags],
   (projects, tasks, statuses, tags) => {
     if (!projects?.data || !tasks) return [];
-    return projects.data.map(project => ({
+    return projects?.data.map(project => ({
       ...project,
-      tasks: tasks.filter(task => task.projectUuid === project.uuid),
-      status: statuses.data.find(status => status.uuid === project.statusUuid),
-      tag: tags.data.find(tag => tag.uuid === project.tagUuid),
+      tasks: tasks.filter(task => task?.projectUuid === project?.uuid),
+      status: statuses?.data.find(status => status?.uuid === project?.statusUuid),
+      tag: tags?.data.find(tag => tag?.uuid === project?.tagUuid),
     }));
   }
 );
