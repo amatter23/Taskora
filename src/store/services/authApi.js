@@ -1,11 +1,9 @@
 // src/store/services/authApi.js
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from './baseQuery';
-
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Auth'],
   endpoints: builder => ({
     login: builder.mutation({
       query: credentials => ({
@@ -28,15 +26,13 @@ export const authApi = createApi({
       }),
     }),
     getUser: builder.mutation({
-      query: () => ({
-        url: 'users/profile',
-        method: 'GET',
-      }),
+      query: () => 'users/profile',
     }),
-    refreshToken: builder.mutation({
-      query: ({ refreshToken }) => ({
-        url: 'auth/refresh-token',
-        method: 'GET',
+    updateUser: builder.mutation({
+      query: ({ data, uuid }) => ({
+        url: `users/${uuid}`,
+        method: 'PATCH',
+        body: data,
       }),
     }),
     getTokenByCode: builder.mutation({
@@ -55,5 +51,6 @@ export const {
   useRegisterMutation,
   useGetUserMutation,
   useRefreshTokenMutation,
+  useUpdateUserMutation,
   useGetTokenByCodeMutation,
 } = authApi;

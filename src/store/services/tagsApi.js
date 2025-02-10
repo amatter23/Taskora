@@ -21,4 +21,5 @@ export const tagsApi = createApi({
     }),
   }),
 });
-export const { useGetTagsQuery, useCreateTagMutation } = tagsApi;
+export const { useGetTagsQuery, useLazyGetTagsQuery, useCreateTagMutation } =
+  tagsApi;

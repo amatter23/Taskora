@@ -1,0 +1,20 @@
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--current-spacing-xs) / 2);
+}
+.nameContainer h6 {
+  color: var(--light-text-color);
+}
+.nameContainer input {
+  font-size: var(--font-size-mobile-xl);
+  width: 100%;
+  font-weight: 900;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--current-spacing-xs);
+}

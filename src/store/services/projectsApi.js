@@ -35,7 +35,6 @@ export const projectsApi = createApi({
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          // Invalidate Tasks tags
           dispatch(tasksApi.util.invalidateTags(['Tasks']));
         } catch (error) {
           console.error('Failed to invalidate tags:', error);
@@ -47,6 +46,7 @@ export const projectsApi = createApi({
 });
 export const {
   useGetProjectsQuery,
+  useLazyGetProjectsQuery,
   useCreateProjectMutation,
   useUpdateProjectMutation,
   useDeleteProjectMutation,

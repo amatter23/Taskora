@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  padding: var(--current-spacing-lg) 0;
+  gap: var(--current-spacing-lg);
+}
+.userContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--current-spacing-md);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--current-spacing-lg);
+  gap: var(--current-spacing-md);
+}
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: var(--current-spacing-sm);
+}
+.userInfo h5 {
+  color: var(--light-text-color);
+}
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  gap: var(--current-spacing-lg);
+}
+.emailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: calc(var(--current-spacing-sm) / 2);
+  width: 100%;
+}
+.emailContainer h6 {
+  color: var(--light-text-color);
+}
+
+.container input {
+  border-bottom: var(--border-color) solid 1px;
+  width: 100%;
+}
+
+.container input:focus {
+  border-bottom: var(--text-color) solid 1px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+  .userContainer {
+    flex-direction: column;
+  }
+}

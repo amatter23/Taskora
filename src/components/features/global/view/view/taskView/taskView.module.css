@@ -18,7 +18,7 @@
 .tasks .header span {
   font-weight: 900;
 }
-.tasks .header .actions{
+.tasks .header .actions {
   display: flex;
   gap: var(--current-spacing-sm);
   align-items: center;
@@ -45,6 +45,9 @@
 .tasks .task .actions {
   display: flex;
   gap: var(--current-spacing-sm);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
 }
 
 @keyframes slideDown {

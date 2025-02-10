@@ -14,7 +14,7 @@ const ChangeType = () => {
         }}
         isActive={type === 'project'}
         bgColor={type != 'project'}
-        title={'Project view'}
+        title={'Projects'}
       >
         <FaProjectDiagram />
       </Button>
@@ -24,7 +24,7 @@ const ChangeType = () => {
         }}
         isActive={type === 'task'}
         bgColor={type != 'task'}
-        title={'Task view'}
+        title={'Tasks'}
       >
         <FaTasks />
       </Button>

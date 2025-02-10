@@ -1,10 +1,11 @@
 import style from './image.module.css';
 import { useSelector } from 'react-redux';
-
-const Image = ({ onClick }) => {
+import useOpenUserPage from '../../../../hooks/auth/useOpenUserPage';
+const Image = () => {
+  const { handleClick } = useOpenUserPage();
   const userData = useSelector(state => state.auth.user);
   return (
-    <div onClick={onClick} className={style.profile}>
+    <div onClick={handleClick} className={style.profile}>
       {userData.picture ? (
         <img src={userData.picture} />
       ) : (
