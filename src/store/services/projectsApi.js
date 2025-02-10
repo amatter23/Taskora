@@ -46,6 +46,7 @@ export const projectsApi = createApi({
 });
 export const {
   useGetProjectsQuery,
+  useLazyGetProjectsQuery,
   useCreateProjectMutation,
   useUpdateProjectMutation,
   useDeleteProjectMutation,

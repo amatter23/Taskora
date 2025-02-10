@@ -1,22 +1,30 @@
-import { useGetProjectsQuery } from '../store/services/projectsApi';
-import { useGetTasksQuery } from '../store/services/tasksApi';
-import { useGetTagsQuery } from '../store/services/tagsApi';
-import { useGetStatusesQuery } from '../store/services/statusesApi';
-/**
- * Custom hook to fetch all data required for the application.
- * It checks the loading status of projects, tasks, tags, and statuses.
- * 
- * @returns {boolean} - Returns true if any of the data is still loading, otherwise false.
- */
+import { useEffect } from 'react';
+import { useLazyGetProjectsQuery } from '../store/services/projectsApi';
+import { useLazyGetTasksQuery } from '../store/services/tasksApi';
+import { useLazyGetTagsQuery } from '../store/services/tagsApi';
+import { useLazyGetStatusesQuery } from '../store/services/statusesApi';
 const useFetchAllData = () => {
-  const { isLoading: isLoadingProjects } = useGetProjectsQuery();
-  const { isLoading: isLoadingTasks } = useGetTasksQuery();
-  const { isLoading: isLoadingTags } = useGetTagsQuery();
-  const { isLoading: isLoadingStatuses } = useGetStatusesQuery();
+  const [getProjects, { isLoading: isLoadingProjects }] =
+    useLazyGetProjectsQuery();
+  const [getTasks, { isLoading: isLoadingTasks }] = useLazyGetTasksQuery();
+  const [getTags, { isLoading: isLoadingTags }] = useLazyGetTagsQuery();
+  const [getStatuses, { isLoading: isLoadingStatuses }] =
+    useLazyGetStatusesQuery();
+  useEffect(() => {
+    (async () => {
+      try {
+        await getProjects().unwrap();
+        await getTasks().unwrap();
+        await getTags().unwrap();
+        await getStatuses().unwrap();
+      } catch (error) {
+        console.error('Data fetching failed:', error);
+      }
+    })();
+  }, [getProjects, getTasks, getTags, getStatuses]);
 
   return (
     isLoadingProjects || isLoadingTasks || isLoadingTags || isLoadingStatuses
   );
 };
-
 export default useFetchAllData;
