@@ -9,8 +9,11 @@ const dataSlice = createSlice({
     setInitialFetchDone: state => {
       state.isInitialFetchDone = true;
     },
+    resetData: state => {
+      state.isInitialFetchDone = false;
+    },
   },
 });
 
-export const { setInitialFetchDone } = dataSlice.actions;
+export const { setInitialFetchDone, resetData } = dataSlice.actions;
 export default dataSlice.reducer;

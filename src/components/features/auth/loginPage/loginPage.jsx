@@ -82,7 +82,11 @@ const LoginPage = () => {
                 <h5>Forget password</h5>
               </div>
               <button
-                className={disable ? style.loginBtnDisabled : style.loginBtn}
+                className={
+                  disable || isEmailLoading
+                    ? style.loginBtnDisabled
+                    : style.loginBtn
+                }
                 type='submit'
                 disabled={disable}
               >

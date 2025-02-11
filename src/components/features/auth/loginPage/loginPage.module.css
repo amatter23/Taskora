@@ -86,6 +86,7 @@
   background-color: var(--text-color);
   border: solid var(--text-color) 1px;
   transition: all ease-in-out 0.2s;
+  color: var(--background-color);
 }
 .formContent form .loginBtn:hover {
   background-color: var(--background-color);
@@ -105,6 +106,7 @@
   transition: all ease-in-out 0.2s;
   background-color: var(--border-color);
   cursor: normal;
+  color: var(--background-color);
 }
 
 @media (max-width: 1100px) {

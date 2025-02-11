@@ -118,7 +118,9 @@ const RegisterPage = () => {
               <button
                 disabled={disable}
                 className={
-                  disable ? style.registerBtnDisabled : style.registerBtn
+                  disable || registerIsLoading
+                    ? style.registerBtnDisabled
+                    : style.registerBtn
                 }
                 type='submit'
               >
