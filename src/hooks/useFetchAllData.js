@@ -21,8 +21,7 @@ const useFetchAllData = () => {
         console.error('Data fetching failed:', error);
       }
     })();
-  }, [getProjects, getTasks, getTags, getStatuses]);
-
+  }, []);
   return (
     isLoadingProjects || isLoadingTasks || isLoadingTags || isLoadingStatuses
   );
