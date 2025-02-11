@@ -1,8 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/slice/authSlice';
+import { resetData } from '../../store/slice/dataSlice';
 import { useLogoutMutation } from '../../store/services/authApi';
+import { projectsApi } from '../../store/services/projectsApi';
+import { tasksApi } from '../../store/services/tasksApi';
+import { tagsApi } from '../../store/services/tagsApi';
+import { statusesApi } from '../../store/services/statusesApi';
 import { useToast } from '../useToast';
-import { useSelector } from 'react-redux';
+
 const useLogout = () => {
   const dispatch = useDispatch();
   const toast = useToast();
@@ -10,10 +15,23 @@ const useLogout = () => {
   const [logoutMutation, { isLoading: logoutIsLoading }] = useLogoutMutation();
 
   const handleLogout = async () => {
-    logoutMutation(refreshToken).unwrap();
-    dispatch(logout());
-    toast.success('Logged out successfully');
+    try {
+      await logoutMutation(refreshToken).unwrap();
+      dispatch(projectsApi.util.resetApiState());
+      dispatch(tasksApi.util.resetApiState());
+      dispatch(tagsApi.util.resetApiState());
+      dispatch(statusesApi.util.resetApiState());
+      dispatch(resetData());
+      dispatch(logout());
+
+      toast.success('Logged out successfully');
+    } catch (error) {
+      toast.error('Logout failed');
+      console.error('Logout error:', error);
+    }
   };
+
   return { handleLogout, logoutIsLoading };
 };
+
 export default useLogout;

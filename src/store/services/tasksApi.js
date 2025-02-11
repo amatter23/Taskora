@@ -4,7 +4,6 @@ import { baseQueryWithReauth } from './baseQuery';
 export const tasksApi = createApi({
   reducerPath: 'tasks',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Tasks'],
   endpoints: builder => ({
     getTasks: builder.query({
       query: () => 'tasks',
@@ -16,7 +15,14 @@ export const tasksApi = createApi({
         method: 'POST',
         body: newTask,
       }),
-      invalidatesTags: ['Tasks'],
+      async onQueryStarted(newTask, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(
+          tasksApi.util.updateQueryData('getTasks', undefined, draft => {
+            draft.data.push(data.data);
+          })
+        );
+      },
     }),
     updateTask: builder.mutation({
       query: task => ({
@@ -24,14 +30,42 @@ export const tasksApi = createApi({
         method: 'PATCH',
         body: task,
       }),
-      invalidatesTags: ['Tasks'],
+      async onQueryStarted(task, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(
+            tasksApi.util.updateQueryData('getTasks', undefined, draft => {
+              console.log(draft);
+              const index = draft.data.findIndex(
+                p => p.uuid === data.data.uuid
+              );
+              if (index !== -1) {
+                draft.data[index] = data.data;
+              }
+            })
+          );
+        } catch (error) {
+          console.error('Error updating project:', error);
+        }
+      },
     }),
     DeleteTask: builder.mutation({
       query: task => ({
         url: `tasks/${task}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Tasks'],
+      async onQueryStarted(task, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(
+            tasksApi.util.updateQueryData('getTasks', undefined, draft => {
+              draft.data = draft.data.filter(t => t.uuid !== task);
+            })
+          );
+        } catch (error) {
+          console.error('Error deleting project:', error);
+        }
+      },
     }),
   }),
 });

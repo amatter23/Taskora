@@ -17,30 +17,70 @@ export const projectsApi = createApi({
         method: 'POST',
         body: newProject,
       }),
-      invalidatesTags: ['Projects'],
+      async onQueryStarted(newProject, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(
+          projectsApi.util.updateQueryData('getProjects', undefined, draft => {
+            draft.data.push(data.data);
+          })
+        );
+      },
     }),
+
     updateProject: builder.mutation({
       query: project => ({
         url: `projects/${project.uuid}`,
         method: 'PATCH',
         body: project,
       }),
-      invalidatesTags: ['Projects'],
+      async onQueryStarted(project, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(
+            projectsApi.util.updateQueryData(
+              'getProjects',
+              undefined,
+              draft => {
+                const index = draft.data.findIndex(
+                  p => p.uuid === project.uuid
+                );
+                if (index !== -1) {
+                  draft.data[index] = data.data;
+                }
+              }
+            )
+          );
+        } catch (error) {
+          console.error('Error updating project:', error);
+        }
+      },
     }),
     DeleteProject: builder.mutation({
       query: project => ({
         url: `projects/${project}`,
         method: 'DELETE',
       }),
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+      async onQueryStarted(project, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          dispatch(tasksApi.util.invalidateTags(['Tasks']));
+          dispatch(
+            projectsApi.util.updateQueryData(
+              'getProjects',
+              undefined,
+              draft => {
+                draft.data = draft.data.filter(t => t.uuid !== project);
+              }
+            )
+          );
+          dispatch(
+            tasksApi.util.updateQueryData('getTasks', undefined, draft => {
+              draft.data = draft.data.filter(t => t.projectUuid !== project);
+            })
+          );
         } catch (error) {
-          console.error('Failed to invalidate tags:', error);
+          console.error('Error deleting project:', error);
         }
       },
-      invalidatesTags: ['Projects'],
     }),
   }),
 });

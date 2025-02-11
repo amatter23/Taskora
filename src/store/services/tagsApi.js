@@ -4,12 +4,10 @@ import { baseQueryWithReauth } from './baseQuery';
 export const tagsApi = createApi({
   reducerPath: 'tags',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['tags'],
 
   endpoints: builder => ({
     getTags: builder.query({
       query: () => 'tags',
-      providesTags: ['tags'],
     }),
     createTag: builder.mutation({
       query: newTag => ({
@@ -17,7 +15,14 @@ export const tagsApi = createApi({
         method: 'POST',
         body: newTag,
       }),
-      invalidatesTags: ['tags'],
+      async onQueryStarted(newTag, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        dispatch(
+          tagsApi.util.updateQueryData('getTags', undefined, draft => {
+            draft.data.push(data.data);
+          })
+        );
+      },
     }),
   }),
 });

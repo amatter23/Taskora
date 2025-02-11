@@ -52,6 +52,20 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
           refreshToken: refreshResult.data.tokens.refreshToken,
         })
       );
+
+      if (args.url === 'auth/logout') {
+        return await baseQuery(
+          {
+            ...args,
+            body: {
+              ...args.body,
+              refreshToken: refreshResult.data.tokens.refreshToken,
+            },
+          },
+          api,
+          extraOptions
+        );
+      }
       return await baseQuery(args, api, extraOptions);
     } catch (error) {
       api.dispatch(logout());

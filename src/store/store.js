@@ -10,6 +10,7 @@ import themeReducer from './slice/themeSlice';
 import modalReducer from './slice/modalSlice';
 import modalComponentReducer from './slice/modalComponentSlice';
 import authReducer from './slice/authSlice';
+import dataReducer from './slice/dataSlice';
 import { CookieStorage } from 'redux-persist-cookie-storage';
 import Cookies from 'js-cookie';
 const persistConfig = {
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   typeView: typeViewReducer,
   theme: themeReducer,
   auth: authReducer,
+  data: dataReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
