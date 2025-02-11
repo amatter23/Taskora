@@ -1,6 +1,8 @@
 import style from './signWith.module.css';
 import { FaGoogle } from 'react-icons/fa';
 const SignWith = () => {
+  const API_URL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : '/api';
+
   return (
     <div className={style.signWith}>
       <div className={style.or}>
@@ -11,7 +13,7 @@ const SignWith = () => {
 
       <a
         className={style.loginWithGoogle}
-        href='https://api.taskora.live/api/v1/auth/google'
+        href={`${API_URL}/auth/google`}
       >
         <FaGoogle />
         Continue with Google

@@ -15,7 +15,10 @@ const baseQuery = fetchBaseQuery({
 export const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result.error && result.error.status === 401) {
+  if (
+    result.error &&
+    (result.error.status === 401 || result.error.status === 403)
+  ) {
     const auth = api.getState().auth;
 
     if (!auth.refreshToken) {
@@ -31,13 +34,13 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
           headers: {
             Authorization: `Bearer ${auth.refreshToken}`,
           },
-          method: 'GET',
+          method: 'POST',
         },
         api,
         extraOptions
       );
 
-      if (!refreshResult.data) {
+      if (!refreshResult.data.tokens) {
         api.dispatch(logout());
         throw new Error('Refresh token failed');
       }
@@ -45,10 +48,8 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
       api.dispatch(
         login({
           ...auth,
-          accessToken: refreshResult.data.accessToken,
-          accessTokenExpire: new Date(
-            new Date().getTime() + 15 * 60 * 1000
-          ).toISOString(),
+          accessToken: refreshResult.data.tokens.accessToken,
+          refreshToken: refreshResult.data.tokens.refreshToken,
         })
       );
       return await baseQuery(args, api, extraOptions);
