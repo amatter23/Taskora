@@ -12,13 +12,12 @@ import RegisterPage from '../features/auth/registerPage/registerPage';
 import Home from '../../components/layouts/home/home';
 import Loading from '../../components/common/loading /loading';
 import useLogin from '../../hooks/auth/useLogIn';
-
+import VerifyPage from '../features/auth/verifyPage/verifyPage';
 const AppRoutes = () => {
   const auth = useSelector(state => state.auth);
   const { handleGoogleCallback, isGoogleLoading } = useLogin();
   const navigate = useNavigate();
   const location = useLocation();
-
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code');
     if (code) {
@@ -37,14 +36,21 @@ const AppRoutes = () => {
     return <Loading text='Authenticating with Google...' />;
   }
   const ProtectedRoute = ({ children }) => {
-    if (!auth.accessToken) return <Navigate to='/login' replace />;
+    if (!auth?.accessToken) return <Navigate to='/login' replace />;
+    if (!auth?.user?.isVerified) return <Navigate to='/verify-email' replace />;
+
     return children;
   };
   const AuthRoute = ({ children }) => {
-    if (auth.accessToken) return <Navigate to='/' replace />;
+    if (auth?.accessToken) return <Navigate to='/' replace />;
     return children;
   };
+  const VerifyRoute = ({ children }) => {
+    if (auth?.user?.isVerified) return <Navigate to='/' replace />;
+    if (!auth?.user?.email) return <Navigate to='/login' replace />;
 
+    return children;
+  };
   return (
     <Routes>
       <Route
@@ -61,6 +67,14 @@ const AppRoutes = () => {
           <AuthRoute>
             <RegisterPage />
           </AuthRoute>
+        }
+      />
+      <Route
+        path='/verify-email'
+        element={
+          <VerifyRoute>
+            <VerifyPage />
+          </VerifyRoute>
         }
       />
       <Route

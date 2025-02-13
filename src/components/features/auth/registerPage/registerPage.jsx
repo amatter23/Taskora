@@ -3,7 +3,6 @@ import SignWith from '../signWith/signWith';
 import AuthState from '../authState/authState';
 import BackgroundImage from '../backgroundImage/backgroundImage';
 import useRegistration from '../../../../hooks/auth/useRegistration';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 const RegisterPage = () => {
   const [name, setName] = useState();
@@ -12,14 +11,10 @@ const RegisterPage = () => {
   const [passwordMatch, setPasswordMatch] = useState(false);
   const { handleRegister, registerIsLoading } = useRegistration();
   const [disable, setDisable] = useState(true);
-  const navigate = useNavigate();
   const registration = async e => {
     e.preventDefault();
     if (!disable) {
-      const success = await handleRegister({ name, email, password });
-      if (success) {
-        navigate('/');
-      }
+      await handleRegister({ name, email, password });
     }
   };
 
