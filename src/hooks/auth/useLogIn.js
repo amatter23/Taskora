@@ -5,10 +5,11 @@ import {
   useGetTokenByCodeMutation,
 } from '../../store/services/authApi';
 import { useToast } from '../useToast';
-
+import useVerifyEmail from './useVerifyEmail';
 const useLogin = () => {
   const dispatch = useDispatch();
   const toast = useToast();
+  const { handelResendEmail } = useVerifyEmail();
   const [loginWithCredentials, { isLoading: isEmailLoading }] =
     useLoginMutation();
   const [getTokenByCode, { isLoading: isGoogleLoading }] =
@@ -29,6 +30,9 @@ const useLogin = () => {
         return true;
       }
     } catch (error) {
+      if (error.status === 403) {
+        handelResendEmail(credentials.email);
+      }
       toast.error(error?.data?.message || 'Login failed');
       return false;
     }
