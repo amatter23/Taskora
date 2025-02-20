@@ -61,6 +61,24 @@ export const authApi = createApi({
         body: { email },
       }),
     }),
+    getOtpToForgotPassword: builder.mutation({
+      query: email => ({
+        url: 'auth/forgot-password',
+        method: 'POST',
+        body: { email },
+      }),
+    }),
+    verifyOtpWithNewPassword: builder.mutation({
+      query: ({ email, otp, password }) => ({
+        url: 'auth/verify-otp',
+        method: 'POST',
+        body: {
+          email,
+          otp,
+          password,
+        },
+      }),
+    }),
   }),
 });
 
@@ -74,4 +92,6 @@ export const {
   useGetTokenByCodeMutation,
   useVerifyEmailMutation,
   useResendVerifyEmailMutation,
+  useGetOtpToForgotPasswordMutation,
+  useVerifyOtpWithNewPasswordMutation,
 } = authApi;

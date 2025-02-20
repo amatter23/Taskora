@@ -57,7 +57,13 @@ const LoginForm = () => {
           />
         </div>
         <div className={style.forgetPassword}>
-          <h5>Forget password</h5>
+          <h5
+            onClick={() => {
+              navigate('/forgot-password  ');
+            }}
+          >
+            Forget password
+          </h5>
         </div>
         <button
           className={

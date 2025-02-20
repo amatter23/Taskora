@@ -13,6 +13,7 @@ import Home from '../../components/layouts/home/home';
 import Loading from '../../components/common/loading /loading';
 import useLogin from '../../hooks/auth/useLogIn';
 import VerifyPage from '../features/auth/verifyPage/verifyPage';
+import ForgatPasswordForm from '../features/auth/forgatPasswordForm/forgatPasswordForm';
 const AppRoutes = () => {
   const auth = useSelector(state => state.auth);
   const { handleGoogleCallback, isGoogleLoading } = useLogin();
@@ -66,6 +67,14 @@ const AppRoutes = () => {
         element={
           <AuthRoute>
             <RegisterForm />
+          </AuthRoute>
+        }
+      />
+      <Route
+        path='/forgot-password'
+        element={
+          <AuthRoute>
+            <ForgatPasswordForm />
           </AuthRoute>
         }
       />
