@@ -20,7 +20,7 @@ const SignWith = () => {
       </a>
       <a
         className={style.loginWithGoogle}
-        href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}
+        href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user:email`}
       >
         <FaGithub />
         Continue with GitHub
