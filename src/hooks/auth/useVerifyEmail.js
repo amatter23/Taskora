@@ -8,7 +8,6 @@ import { login } from '../../store/slice/authSlice';
 import { useNavigate } from 'react-router-dom';
 const useVerifyEmail = () => {
   const token = new URLSearchParams(location.search).get('token');
-  const userUuid = new URLSearchParams(location.search).get('userUuid');
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const [verifyEmail, verifyResult] = useVerifyEmailMutation();
@@ -16,11 +15,11 @@ const useVerifyEmail = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const handelVerifyEmail = async () => {
-    if (!token || !userUuid) {
+    if (!token) {
       return;
     }
     try {
-     await verifyEmail({ token, userUuid }).unwrap();
+      await verifyEmail({ token }).unwrap();
       dispatch(
         login({
           ...auth,
