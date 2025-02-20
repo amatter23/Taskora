@@ -12,7 +12,7 @@ const useLogin = () => {
   const { handelResendEmail } = useVerifyEmail();
   const [loginWithCredentials, { isLoading: isEmailLoading }] =
     useLoginMutation();
-  const [getTokenByCode, { isLoading: isGoogleLoading }] =
+  const [getTokenByCode, { isLoading: isCallbackLoading }] =
     useGetTokenByCodeMutation();
 
   const handleEmailLogin = async credentials => {
@@ -38,9 +38,9 @@ const useLogin = () => {
     }
   };
 
-  const handleGoogleCallback = async code => {
+  const handleCallback = async ({ code, provider }) => {
     try {
-      const result = await getTokenByCode(code).unwrap();
+      const result = await getTokenByCode({ code, provider }).unwrap();
       if (result.data) {
         dispatch(
           login({
@@ -61,10 +61,10 @@ const useLogin = () => {
 
   return {
     handleEmailLogin,
-    handleGoogleCallback,
+    handleCallback,
     isEmailLoading,
-    isGoogleLoading,
-    isLoading: isEmailLoading || isGoogleLoading,
+    isCallbackLoading,
+    isLoading: isEmailLoading || isCallbackLoading,
   };
 };
 
