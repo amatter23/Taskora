@@ -42,10 +42,43 @@ export const authApi = createApi({
       }),
     }),
     getTokenByCode: builder.mutation({
-      query: code => ({
-        url: 'auth/google/callback',
+      query: ({ code, provider }) => (
+        {
+          url: `auth/${provider}/callback`,
+          method: 'GET',
+          params: { code },
+        }
+      ),
+    }),
+    verifyEmail: builder.mutation({
+      query: ({ token }) => ({
+        url: `auth/verify-email?token=${token}`,
         method: 'GET',
-        params: { code },
+      }),
+    }),
+    resendVerifyEmail: builder.mutation({
+      query: email => ({
+        url: 'auth/resend-verify-email',
+        method: 'POST',
+        body: { email },
+      }),
+    }),
+    getOtpToForgotPassword: builder.mutation({
+      query: email => ({
+        url: 'auth/forgot-password',
+        method: 'POST',
+        body: { email },
+      }),
+    }),
+    verifyOtpWithNewPassword: builder.mutation({
+      query: ({ email, otp, password }) => ({
+        url: 'auth/verify-otp',
+        method: 'POST',
+        body: {
+          email,
+          otp,
+          password,
+        },
       }),
     }),
   }),
@@ -59,4 +92,8 @@ export const {
   useRefreshTokenMutation,
   useUpdateUserMutation,
   useGetTokenByCodeMutation,
+  useVerifyEmailMutation,
+  useResendVerifyEmailMutation,
+  useGetOtpToForgotPasswordMutation,
+  useVerifyOtpWithNewPasswordMutation,
 } = authApi;
