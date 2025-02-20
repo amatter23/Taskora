@@ -42,11 +42,13 @@ export const authApi = createApi({
       }),
     }),
     getTokenByCode: builder.mutation({
-      query: code => ({
-        url: 'auth/google/callback',
-        method: 'GET',
-        params: { code },
-      }),
+      query: ({ code, provider }) => (
+        {
+          url: `auth/${provider}/callback`,
+          method: 'GET',
+          params: { code },
+        }
+      ),
     }),
     verifyEmail: builder.mutation({
       query: ({ token }) => ({

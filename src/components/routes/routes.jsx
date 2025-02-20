@@ -16,25 +16,25 @@ import VerifyPage from '../features/auth/verifyPage/verifyPage';
 import ForgatPasswordForm from '../features/auth/forgatPasswordForm/forgatPasswordForm';
 const AppRoutes = () => {
   const auth = useSelector(state => state.auth);
-  const { handleGoogleCallback, isGoogleLoading } = useLogin();
+  const { handleCallback, isCallbackLoading } = useLogin();
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code');
-    if (code) {
-      handleGoogleCallback(code).then(async success => {
+    const provider = new URLSearchParams(location.search).get('provider');
+    if (code && provider) {
+      handleCallback({ code, provider }).then(async success => {
         if (success) {
           await new Promise(resolve => setTimeout(resolve, 2000));
           navigate('/', { replace: true });
         } else {
-          navigate('/login', { replace: true });
+          navigate('/login');
         }
       });
     }
   }, []);
-
-  if (isGoogleLoading) {
-    return <Loading text='Authenticating with Google...' />;
+  if (isCallbackLoading) {
+    return <Loading text={`Authenticating... Wait a second⌛`} />;
   }
   const ProtectedRoute = ({ children }) => {
     if (!auth?.accessToken) return <Navigate to='/login' replace />;
