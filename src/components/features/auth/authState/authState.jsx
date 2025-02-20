@@ -4,7 +4,13 @@ const AuthState = ({ title, link, type }) => {
     <div>
       <h5>
         {title}
-        <Link to={link}>{type}</Link>
+        &nbsp;
+        <Link
+          style={{ color: 'var(--primary-color)', textDecoration: 'none' }}
+          to={link}
+        >
+          {type}
+        </Link>
       </h5>
     </div>
   );

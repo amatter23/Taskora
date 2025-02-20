@@ -27,7 +27,7 @@ const AuthLayout = ({ children, title, description, authState, signWith }) => {
             {authState === 'login' ? (
               <>
                 <AuthState
-                  title={`Don't have an account ?`}
+                  title={`Don't have an account?`}
                   link={'/register'}
                   type={'Sign up'}
                 ></AuthState>
@@ -35,7 +35,7 @@ const AuthLayout = ({ children, title, description, authState, signWith }) => {
             ) : (
               <>
                 <AuthState
-                  title={`Already have an account ?`}
+                  title={`Already have an account?`}
                   link={'/login'}
                   type={'Login'}
                 ></AuthState>
