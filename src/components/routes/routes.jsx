@@ -7,12 +7,13 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import LoginPage from '../features/auth/loginPage/loginPage';
-import RegisterPage from '../features/auth/registerPage/registerPage';
+import LoginForm from '../features/auth/loginForm/loginForm';
+import RegisterForm from '../features/auth/registerForm/registerForm';
 import Home from '../../components/layouts/home/home';
 import Loading from '../../components/common/loading /loading';
 import useLogin from '../../hooks/auth/useLogIn';
 import VerifyPage from '../features/auth/verifyPage/verifyPage';
+import ForgatPasswordForm from '../features/auth/forgatPasswordForm/forgatPasswordForm';
 const AppRoutes = () => {
   const auth = useSelector(state => state.auth);
   const { handleGoogleCallback, isGoogleLoading } = useLogin();
@@ -57,7 +58,7 @@ const AppRoutes = () => {
         path='/login'
         element={
           <AuthRoute>
-            <LoginPage />
+            <LoginForm />
           </AuthRoute>
         }
       />
@@ -65,7 +66,15 @@ const AppRoutes = () => {
         path='/register'
         element={
           <AuthRoute>
-            <RegisterPage />
+            <RegisterForm />
+          </AuthRoute>
+        }
+      />
+      <Route
+        path='/forgot-password'
+        element={
+          <AuthRoute>
+            <ForgatPasswordForm />
           </AuthRoute>
         }
       />
