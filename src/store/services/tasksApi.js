@@ -35,7 +35,6 @@ export const tasksApi = createApi({
           const { data } = await queryFulfilled;
           dispatch(
             tasksApi.util.updateQueryData('getTasks', undefined, draft => {
-              console.log(draft);
               const index = draft.data.findIndex(
                 p => p.uuid === data.data.uuid
               );

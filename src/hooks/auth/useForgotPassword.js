@@ -28,7 +28,6 @@ const useForgotPassword = () => {
       toast.success('Password changed successfully');
       navigate('/login');
     } catch (error) {
-      console.log(error);
       toast.error(error.data?.message || 'Failed to change password');
     }
   };
