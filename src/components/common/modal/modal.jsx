@@ -8,33 +8,18 @@ import useModalComponent from '../../../hooks/useModalComponent';
 import useModalTitle from '../../../hooks/useModalTitle';
 import useModalFullScreen from '../../../hooks/useModalFullScreen';
 import Button from '../button/button';
-
-/**
- * Modal component that provides a customizable popup window with header and content area.
- * Supports fullscreen mode and manages its own visibility state through Redux.
- */
+import { AnimatePresence, motion } from 'framer-motion';
 const Modal = () => {
-  // DOM reference for the modal container
   const modalRef = useRef(null);
-
-  // Redux state selectors
   const isVisible = useSelector(state => state.modal.visibility);
   const title = useSelector(state => state.modal.title);
   const Component = useSelector(state => state.modalComponent);
   const disable = useSelector(state => state.modal.fullScreen);
-
-  // Custom hooks for modal state management
   const toggleVisibility = useModalVisibility();
   const setComponent = useModalComponent();
   const setTitle = useModalTitle();
   const setDisable = useModalFullScreen();
-
-  // Local state for fullscreen mode
   const [isFullScreen, setFullScreen] = useState(false);
-
-  /**
-   * Handles modal closure by resetting all modal states
-   */
   const handelClose = () => {
     toggleVisibility();
     setComponent(null);
@@ -43,42 +28,95 @@ const Modal = () => {
     setDisable(false);
   };
 
+  const modalVariants = {
+    initial: {
+      y: '100%',
+      height: 'auto',
+      maxHeight: '80%',
+    },
+    animate: {
+      y: 0,
+      height: isFullScreen ? '80%' : 'auto',
+      maxHeight: isFullScreen ? '80%' : 'auto',
+      transition: {
+        y: {
+          type: 'spring',
+          bounce: 0.4,
+          duration: 0.8,
+        },
+        height: {
+          type: 'spring',
+          bounce: 0.2,
+          duration: 0.5,
+        },
+        maxHeight: {
+          type: 'spring',
+          bounce: 0.2,
+          duration: 0.5,
+        },
+      },
+    },
+    exit: {
+      y: '100%',
+      transition: {
+        type: 'spring',
+        bounce: 0,
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
-    <div className={isVisible ? style.container : style.hidden}>
-      {/* Backdrop overlay that closes the modal when clicked */}
-      <div
-        className={isVisible ? style.overlay : style.hidden}
-        onClick={handelClose}
-      />
-      {/* Modal content wrapper */}
-      <main
-        ref={modalRef}
-        className={isVisible ? style.modal : style.hidden}
-        style={{
-          height: isFullScreen ? '80%' : 'fit-content',
-          maxHeight: isFullScreen ? '80%' : '60%',
-        }}
-      >
-        {/* Modal header with title and control buttons */}
-        <header className={style.header}>
-          <h5>{title}</h5>
-          <div className={style.actions}>
-            <Button onClick={handelClose} bgColor={true}>
-              <RiArrowDownDoubleLine />
-            </Button>
-            <Button
-              disable={disable}
-              onClick={() => setFullScreen(!isFullScreen)}
-              bgColor={disable ? false : true}
+    <AnimatePresence mode='wait'>
+      {isVisible && (
+        <motion.div className={style.container}>
+          <motion.div
+            className={style.overlay}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+            onClick={handelClose}
+          />
+
+          <motion.main
+            ref={modalRef}
+            className={style.modal}
+            variants={modalVariants}
+            initial='initial'
+            animate='animate'
+            exit='exit'
+          >
+            <motion.header
+              className={style.header}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
             >
-              {isFullScreen ? <MdOutlineZoomOutMap /> : <MdZoomInMap />}
-            </Button>
-          </div>
-        </header>
-        {/* Dynamic content area */}
-        {Component}
-      </main>
-    </div>
+              <h5>{title}</h5>
+              <div className={style.actions}>
+                <Button onClick={handelClose} bgColor={true}>
+                  <RiArrowDownDoubleLine />
+                </Button>
+                <Button
+                  disable={disable}
+                  onClick={() => setFullScreen(!isFullScreen)}
+                  bgColor={!disable}
+                >
+                  {isFullScreen ? <MdOutlineZoomOutMap /> : <MdZoomInMap />}
+                </Button>
+              </div>
+            </motion.header>
+            <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {Component}
+            </motion.div>
+          </motion.main>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
