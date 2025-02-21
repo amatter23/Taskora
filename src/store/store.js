@@ -17,9 +17,9 @@ const persistConfig = {
   key: 'root',
   storage: new CookieStorage(Cookies, {
     expiration: {
-      default: 7 * 24 * 60 * 60 * 1000, // 7 days
+      default: 7 * 24 * 60 * 60 * 1000,
     },
-    secure: true, // Set to false if not using HTTPS
+    secure: true,
   }),
   whitelist: ['auth', 'theme'],
 };

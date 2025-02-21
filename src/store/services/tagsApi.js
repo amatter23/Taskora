@@ -4,7 +4,7 @@ import { baseQueryWithReauth } from './baseQuery';
 export const tagsApi = createApi({
   reducerPath: 'tags',
   baseQuery: baseQueryWithReauth,
-
+  keepUnusedDataFor: 21600,
   endpoints: builder => ({
     getTags: builder.query({
       query: () => 'tags',

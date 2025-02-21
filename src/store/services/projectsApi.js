@@ -6,6 +6,7 @@ export const projectsApi = createApi({
   reducerPath: 'projects',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['Projects', 'Tasks'],
+  keepUnusedDataFor: 21600,
   endpoints: builder => ({
     getProjects: builder.query({
       query: () => 'projects',
