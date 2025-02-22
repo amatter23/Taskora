@@ -41,8 +41,8 @@ const Modal = () => {
       transition: {
         y: {
           type: 'spring',
-          bounce: 0.4,
-          duration: 0.8,
+          bounce: 0.2,
+          duration: 0.6,
         },
         height: {
           type: 'spring',
