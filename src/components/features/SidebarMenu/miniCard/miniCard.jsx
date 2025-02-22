@@ -43,7 +43,7 @@ const MiniCard = ({ onClick, uuid, type }) => {
       ) : (
         ''
       )}
-      <h3>{data.name}</h3>
+      <h3>{data?.name}</h3>
     </div>
   );
 };
