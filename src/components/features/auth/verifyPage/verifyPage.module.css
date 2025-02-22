@@ -1,20 +1,33 @@
 .verifyPage {
+  height: 100vh;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: auto;
   background-color: var(--background-color);
+  padding: var(--current-spacing-lg);
+  text-align: center;
+  height: 100%;
 }
 
 .verifyPage .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   max-width: 400px;
+  height: 100%;
   gap: calc(var(--current-spacing-lg));
 }
 .emailIcon {
