@@ -19,7 +19,14 @@
 
 .form {
   width: 40%;
-  height: 100%;
+  height: 95%;
+  margin: auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +39,9 @@
   flex-direction: column;
   align-items: start;
   gap: calc(var(--current-spacing-lg));
+  justify-content: space-evenly;
   margin: auto;
+  height: 100%;
 }
 .formContent .title {
   display: flex;
@@ -107,7 +116,10 @@
   cursor: normal;
   color: var(--background-color);
 }
-
+.formContent form label {
+  font-size: var(--current-font-size-sm);
+  color: var(--light-text-color);
+}
 @media (max-width: 1100px) {
   .authLayoutContainer {
     flex-direction: column-reverse;

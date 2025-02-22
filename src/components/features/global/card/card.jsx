@@ -69,7 +69,7 @@ const Card = ({ type, uuid }) => {
         {type === 'project' ? (
           <div className={style.tasksCount}>
             <MdOutlineTaskAlt />
-            <h6>{data.tasks.length} task</h6>
+            <h6>{data?.tasks?.length} task</h6>
           </div>
         ) : (
           <>

@@ -52,7 +52,7 @@ const LoginForm = () => {
             onChange={e => {
               handlePasswordChange(e);
             }}
-            placeholder='At least 6 characters'
+            placeholder='At least 8 characters'
             type='password'
           />
         </div>
