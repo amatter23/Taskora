@@ -11,7 +11,7 @@ const AuthLayout = ({ children, title, description, authState, signWith }) => {
             <div className={style.title}>
               <img
                 className={style.logo}
-                src='https://res.cloudinary.com/de9jdl1lm/image/upload/v1738898452/taskora-api/xfujhxusx4ymtdlclcp3.png'
+                src='/logo.png'
                 alt=''
                 style={{
                   width: '2rem',
