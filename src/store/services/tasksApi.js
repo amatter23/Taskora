@@ -4,7 +4,7 @@ import { baseQueryWithReauth } from './baseQuery';
 export const tasksApi = createApi({
   reducerPath: 'tasks',
   baseQuery: baseQueryWithReauth,
-  keepUnusedDataFor: 10,
+  keepUnusedDataFor: 21600,
   endpoints: builder => ({
     getTasks: builder.query({
       query: () => 'tasks',
