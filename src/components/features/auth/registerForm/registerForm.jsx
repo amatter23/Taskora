@@ -2,11 +2,20 @@ import style from '../../../layouts/authLayout/authLayout.module.css';
 import useRegistration from '../../../../hooks/auth/useRegistration';
 import { useState } from 'react';
 import AuthLayout from '../../../layouts/authLayout/authLayout';
+import CreatePassword from '../createPassword/createPassword';
 const RegisterForm = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [passwordConfirm, setPasswordConfirm] = useState();
   const [passwordMatch, setPasswordMatch] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [passwordErrors, setPasswordErrors] = useState({
+    letter: false,
+    digit: false,
+    special: false,
+    length: false,
+  });
   const { handleRegister, registerIsLoading } = useRegistration();
   const [disable, setDisable] = useState(true);
   const registration = async e => {
@@ -31,11 +40,29 @@ const RegisterForm = () => {
   const handlePasswordChange = e => {
     const newPassword = e.target.value;
     setPassword(newPassword);
-    setDisable(!name || !email || !newPassword || !passwordMatch);
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:'",.<>/?]).{8,}$/;
+    const hasLetter = /[A-Za-z]/.test(newPassword);
+    const hasDigit = /\d/.test(newPassword);
+    const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};:'",.<>/?]/.test(
+      newPassword
+    );
+    const hasLength = newPassword?.length >= 8;
+    const isValid = passwordRegex.test(newPassword);
+    setIsValidPassword(isValid);
+    const passwordMatch = newPassword === passwordConfirm;
+    setPasswordMatch(passwordMatch);
+    setPasswordErrors({
+      letter: hasLetter,
+      digit: hasDigit,
+      special: hasSpecialChar,
+      length: hasLength,
+    });
+    setDisable(!name || !email || !newPassword || !passwordMatch || !isValid);
   };
-
   const handleConfirmPasswordChange = e => {
     const isMatch = password === e.target.value;
+    setPasswordConfirm(e.target.value);
     setPasswordMatch(isMatch);
     setDisable(!name || !email || !password || !isMatch);
   };
@@ -73,29 +100,13 @@ const RegisterForm = () => {
             type='email'
           />
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            onChange={e => {
-              handlePasswordChange(e);
-            }}
-            placeholder='At least 6 characters'
-            type='password'
-          />
-        </div>
-        <div>
-          <label>Confirm password</label>
-          <input
-            onChange={e => {
-              handleConfirmPasswordChange(e);
-            }}
-            placeholder='Confirm your password'
-            type='password'
-          />
-          <label>
-            {password ? (passwordMatch ? '' : 'password not match') : ''}
-          </label>
-        </div>
+        <CreatePassword
+          handlePasswordChange={handlePasswordChange}
+          passwordErrors={passwordErrors}
+          handleConfirmPasswordChange={handleConfirmPasswordChange}
+          password={password}
+          passwordMatch={passwordMatch}
+        />
         <button
           disabled={disable}
           className={

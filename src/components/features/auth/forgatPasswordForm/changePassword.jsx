@@ -1,29 +1,54 @@
 import style from '../../../layouts/authLayout/authLayout.module.css';
 import useForgotPassword from '../../../../hooks/auth/useForgotPassword';
+import CreatePassword from '../createPassword/createPassword';
 import { useState } from 'react';
 
 const ChangePassword = ({ email }) => {
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
   const [passwordMatch, setPasswordMatch] = useState();
+  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [passwordErrors, setPasswordErrors] = useState({
+    letter: false,
+    digit: false,
+    special: false,
+    length: false,
+  });
   const [otp, setOtp] = useState();
   const [disable, setDisable] = useState(true);
 
   const handelOtpChange = e => {
     setOtp(e.target.value);
-    setDisable(!password || !passwordMatch || !otp);
+    setDisable(!password || !passwordMatch || !e.target.value);
   };
   const handlePasswordChange = e => {
-    setPassword(e.target.value);
-    const isMatch = passwordConfirm === e.target.value;
-    setPasswordMatch(isMatch);
-    setDisable(!password || !isMatch || !otp);
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:'",.<>/?]).{8,}$/;
+    const hasLetter = /[A-Za-z]/.test(newPassword);
+    const hasDigit = /\d/.test(newPassword);
+    const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};:'",.<>/?]/.test(
+      newPassword
+    );
+    const hasLength = newPassword?.length >= 8;
+    const isValid = passwordRegex.test(newPassword);
+    setIsValidPassword(isValid);
+    const passwordMatch = newPassword === passwordConfirm;
+    setPasswordMatch(passwordMatch);
+    setPasswordErrors({
+      letter: hasLetter,
+      digit: hasDigit,
+      special: hasSpecialChar,
+      length: hasLength,
+    });
+    setDisable(!newPassword || !passwordMatch || !isValid || !otp);
   };
   const handleConfirmPasswordChange = e => {
     const isMatch = password === e.target.value;
     setPasswordConfirm(e.target.value);
     setPasswordMatch(isMatch);
-    setDisable(!password || !isMatch || !otp);
+    setDisable(!password || !isMatch || !isValidPassword || !otp);
   };
   const { handeLForgotPassword, forgotPasswordIsLoading } = useForgotPassword();
 
@@ -44,29 +69,13 @@ const ChangePassword = ({ email }) => {
           }}
         />
       </div>
-      <div>
-        <label>New Password</label>
-        <input
-          onChange={e => {
-            handlePasswordChange(e);
-          }}
-          type='password'
-          placeholder='At least 6 characters'
-        />
-      </div>
-      <div>
-        <label>Confirm Password</label>
-        <input
-          onChange={e => {
-            handleConfirmPasswordChange(e);
-          }}
-          type='password'
-          placeholder='At least 6 characters'
-        />
-        <label>
-          {password ? (passwordMatch ? '' : 'password not match') : ''}
-        </label>
-      </div>
+      <CreatePassword
+        handlePasswordChange={handlePasswordChange}
+        passwordErrors={passwordErrors}
+        handleConfirmPasswordChange={handleConfirmPasswordChange}
+        password={password}
+        passwordMatch={passwordMatch}
+      />
       <button
         className={
           disable || forgotPasswordIsLoading
