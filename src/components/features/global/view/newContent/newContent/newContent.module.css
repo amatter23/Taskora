@@ -21,5 +21,6 @@
   .actions {
     flex-direction: row;
     justify-content: left;
+    flex-wrap: wrap;
   }
 }
