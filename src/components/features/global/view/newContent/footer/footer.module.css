@@ -14,9 +14,10 @@
   .footer {
     flex-direction: column;
     justify-content: start;
+    align-items: flex-start;
     gap: var(--current-spacing-sm);
   }
-  .actions{
+  .actions {
     flex-direction: column-reverse;
   }
 }
