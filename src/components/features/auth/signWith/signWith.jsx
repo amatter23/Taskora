@@ -2,7 +2,7 @@ import style from './signWith.module.css';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 const SignWith = () => {
-  const API_URL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : '/api';
+  const API_URL = '/api';
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
   const REDIRECT_URI = import.meta.env.VITE_GITHUB_REDIRECT_URI;
 
