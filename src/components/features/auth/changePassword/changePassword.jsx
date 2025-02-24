@@ -30,17 +30,16 @@ const ChangePassword = () => {
             type='password'
           />
           <h6>
-            {password.length < 6 ? 'At least 6 characters' : ''}
+            {password.length < 6 ? 'At least 8 characters' : ''}
           </h6>
         </div>
-
         <Button
-          textColor={!isLoading || password.length < 6}
+          textColor={!isLoading || password.length < 8}
           onClick={e => {
             e.preventDefault();
             handelChangePassword(password);
           }}
-          disable={isLoading || password.length < 6}
+          disable={isLoading || password.length < 8}
         >
           <h6>{isLoading ? 'Changing' : 'Change'}</h6>
           <FaUnlockAlt />
