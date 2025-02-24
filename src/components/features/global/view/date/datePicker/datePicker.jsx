@@ -5,7 +5,7 @@ import DateLabel from '../dateLabel/dateLable';
 import style from './datePicker.module.css';
 import dayjs from 'dayjs';
 const DatePicker = ({ onChange, defaultValue }) => {
-  const defaultDate = defaultValue ? dayjs(defaultValue) : dayjs();
+  const defaultDate = defaultValue ? dayjs(defaultValue) : null;
 
   const dateOptions = [
     {

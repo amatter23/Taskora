@@ -39,7 +39,7 @@ const NewContent = ({ projectData, type, onCancel, onCreate }) => {
         onDescriptionChange={description => {
           setNewContent({
             ...newContent,
-            description: description,
+            description: description === '' ? null : description,
           });
         }}
       ></Main>
