@@ -1,9 +1,8 @@
-const API_URL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : '/api';
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { logout, login } from '../slice/authSlice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: API_URL,
+  baseUrl: '/api',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
     if (token) {
