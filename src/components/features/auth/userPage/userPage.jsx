@@ -19,7 +19,7 @@ const UserPage = () => {
           <h6>Email</h6>
           <h4>{userData.email}</h4>
         </div>
-        <ChangePassword />
+        {userData?.hasPassword ? <ChangePassword /> : null}
       </div>
     </div>
   );
