@@ -72,7 +72,7 @@ const LoginForm = () => {
               : style.actionBtn
           }
           type='submit'
-          disabled={disable}
+          disabled={disable || isEmailLoading}
         >
           {isEmailLoading ? 'Authenticating...' : 'Login'}
         </button>

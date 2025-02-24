@@ -108,13 +108,13 @@ const RegisterForm = () => {
           passwordMatch={passwordMatch}
         />
         <button
-          disabled={disable}
           className={
             disable || registerIsLoading
               ? style.actionBtnDisabled
               : style.actionBtn
           }
           type='submit'
+          disabled={disable || registerIsLoading}
         >
           {registerIsLoading ? 'Authenticating...' : 'Register'}
         </button>
