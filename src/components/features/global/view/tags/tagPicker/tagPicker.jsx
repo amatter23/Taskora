@@ -41,7 +41,7 @@ const TagPicker = ({ onChange }) => {
   const tags = useSelector(state => selectAllTags(state));
   const [newTag, setNewTag] = useState({
     name: '',
-    color: 'var(--primary-color)',
+    color: '#306bff',
   });
   const search = useSearch({ list: tags, from: 'name', to: newTag });
 
@@ -50,7 +50,7 @@ const TagPicker = ({ onChange }) => {
     onSuccess: () =>
       setNewTag({
         name: '',
-        color: 'var(--primary-color)',
+        color: '#306bff',
       }),
   });
   const handleCreateTag = () =>
