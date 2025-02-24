@@ -108,3 +108,7 @@
 input {
   all: unset;
 }
+
+button {
+  font-family: 'Chillax', sans-serif ;
+}
