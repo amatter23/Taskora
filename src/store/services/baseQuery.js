@@ -2,7 +2,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { logout, login } from '../slice/authSlice';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api',
+  baseUrl: '/backend',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
     if (token) {
@@ -26,7 +26,7 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
     }
     try {
       const refreshResult = await fetchBaseQuery({
-        baseUrl: API_URL,
+        baseUrl: '/backend',
       })(
         {
           url: 'auth/refresh-token',
