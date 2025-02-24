@@ -20,7 +20,7 @@
   background-color: var(--border-color);
   display: flex;
 }
-.loginWithGoogle {
+.loginWith {
   all: unset;
   display: flex;
   justify-content: center;
@@ -37,7 +37,24 @@
   gap: var(--current-spacing-sm);
   color: var(--text-color);
 }
-.loginWithGoogle:hover {
+.loginWithDisabled {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--current-spacing-sm) * 0.7) 0;
+  border-radius: var(--current-border-radius);
+  cursor: not-allowed;
+  font-size: var(--current-font-size-sm);
+  font-weight: 500;
+  background-color: var(--border-color);
+  border: solid var(--border-color) 1px;
+  transition: all ease-in-out 0.2s;
+  width: 100%;
+  gap: var(--current-spacing-sm);
+  color: var(--background-color);
+}
+.loginWith:hover {
   background-color: var(--text-color);
   color: var(--background-color);
   border: solid var(--text-color) 1px;

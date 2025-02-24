@@ -22,7 +22,7 @@
   border-radius: var(--current-border-radius);
   gap: var(--current-spacing-xs);
   color: var(--border-color);
-  cursor: default;
+  cursor: not-allowed;
   background-color: var(--background-color);
 }
 .title {

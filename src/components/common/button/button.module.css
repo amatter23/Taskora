@@ -33,11 +33,10 @@
 .buttonDisable {
   background-color: var(--background-color);
   color: var(--border-color);
-  cursor: default;
+  cursor: not-allowed;
 }
 .buttonDisable:hover {
   color: var(--border-color);
-  cursor: default;
 }
 
 .content {

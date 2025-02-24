@@ -23,7 +23,7 @@
   width: fit-content;
   padding: calc(var(--current-spacing-xs) / 1.5) calc(var(--current-spacing-xs));
   color: var(--border-color);
-  cursor: default;
+  cursor: not-allowed;
   border: solid 1px var(--border-color);
   border-radius: var(--current-border-radius);
   background-color: var(--background-color);
