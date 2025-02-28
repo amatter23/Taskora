@@ -5,13 +5,20 @@ import ChangePassword from '../changePassword/changePassword';
 import UserFullName from '../userFullName/userFullName';
 const UserPage = () => {
   const userData = useSelector(state => state.auth.user);
+  console.log(userData.createdAt);
   return (
     <div className={style.container}>
       <div className={style.userContainer}>
         <UserPhoto />
         <div className={style.userInfo}>
           <UserFullName />
-          <h5>Member since January 2024</h5>
+          <h5>
+            {userData?.createdAt
+              ? `Member since ${new Date(
+                  userData.createdAt
+                ).toLocaleDateString()}`
+              : null}
+          </h5>
         </div>
       </div>
       <div className={style.detailsContainer}>
