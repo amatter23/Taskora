@@ -10,6 +10,7 @@
 }
 .delete:hover {
   background-color: var(--error-color);
+  color: var(--background-color);
 }
 .title {
   display: flex;
