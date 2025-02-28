@@ -14,7 +14,6 @@ const SignWith = () => {
       setIsDisabled(true);
     }
   };
-  console.log(isDisabled);
   return (
     <div className={style.signWith}>
       <div className={style.or}>

@@ -29,6 +29,7 @@ const Details = ({
             onNameChange(e.target.value);
           }}
           placeholder='Submit essay on AI by Thursday p1'
+          maxLength={60}
         />
       </div>
       <div className={style.description}>
@@ -44,7 +45,8 @@ const Details = ({
           onChange={e => {
             onDescriptionChange(e.target.value);
           }}
-          placeholder='description '
+          placeholder='description'
+          maxLength={250}
         />
       </div>
     </div>

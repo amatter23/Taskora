@@ -48,7 +48,6 @@ const AppRoutes = () => {
   };
   const VerifyRoute = ({ children }) => {
     if (auth?.user?.isVerified) return <Navigate to='/' replace />;
-    if (!auth?.user?.email) return <Navigate to='/login' replace />;
 
     return children;
   };

@@ -17,9 +17,12 @@ const VerifyPage = () => {
     verifyEmailLoading,
     resendIsLoading,
   } = useVerifyEmail();
-  const email = useSelector(state => state.auth.user.email);
+  const email = useSelector(state => state?.auth?.user?.email);
   useEffect(() => {
     handelVerifyEmail();
+    if (!email) {
+      navigate('/login');
+    }
   }, []);
   if (verifyEmailLoading) {
     return <Loading text='Verifying email...' />;

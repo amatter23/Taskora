@@ -55,7 +55,12 @@ const UserPhoto = () => {
               color: 'var(--text-color)',
             }}
           >
-            Upload
+            <div style={{ padding: '0 0.5rem' }}>
+              <div>Upload</div>
+              <div style={{ color: 'var(--light-text-color)' }}>
+                png, jpg, jpeg
+              </div>
+            </div>
           </div>
         </button>
       )}

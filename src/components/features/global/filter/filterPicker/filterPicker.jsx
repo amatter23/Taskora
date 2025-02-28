@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import style from './filterPicker.module.css';
 import { selectAllStatuses } from '../../../../../store/selectors/statuses/allStatusesSelector';
 import useHandleNames from '../../../../../hooks/useHandleNames';
@@ -21,14 +21,26 @@ const FilterPicker = ({ onChange, defaultValue }) => {
               {statuses.map(status => (
                 <div
                   onClick={() => {
-                    onChange({
-                      ...search,
-                      status: status,
-                    });
-                    setSearch({
-                      ...search,
-                      status: status,
-                    });
+                    if (search?.status?.name === status.name) {
+                      onChange({
+                        ...search,
+                        status: '',
+                      });
+                      setSearch({
+                        ...search,
+                        status: '',
+                      });
+                      return;
+                    } else {
+                      onChange({
+                        ...search,
+                        status: status,
+                      });
+                      setSearch({
+                        ...search,
+                        status: status,
+                      });
+                    }
                   }}
                   key={status.name}
                   className={
@@ -74,14 +86,26 @@ const FilterPicker = ({ onChange, defaultValue }) => {
             <div className={style.dateGrid}>
               <p
                 onClick={() => {
-                  onChange({
-                    ...search,
-                    date: 'today',
-                  });
-                  setSearch({
-                    ...search,
-                    date: 'today',
-                  });
+                  if (search.date === 'today') {
+                    onChange({
+                      ...search,
+                      date: '',
+                    });
+                    setSearch({
+                      ...search,
+                      date: '',
+                    });
+                    return;
+                  } else {
+                    onChange({
+                      ...search,
+                      date: 'today',
+                    });
+                    setSearch({
+                      ...search,
+                      date: 'today',
+                    });
+                  }
                 }}
                 className={
                   search.date === 'today' ? style.active : style.dateOption
@@ -91,14 +115,26 @@ const FilterPicker = ({ onChange, defaultValue }) => {
               </p>
               <p
                 onClick={() => {
-                  onChange({
-                    ...search,
-                    date: 'week',
-                  });
-                  setSearch({
-                    ...search,
-                    date: 'week',
-                  });
+                  if (search.date === 'week') {
+                    onChange({
+                      ...search,
+                      date: '',
+                    });
+                    setSearch({
+                      ...search,
+                      date: '',
+                    });
+                    return;
+                  } else {
+                    onChange({
+                      ...search,
+                      date: 'week',
+                    });
+                    setSearch({
+                      ...search,
+                      date: 'week',
+                    });
+                  }
                 }}
                 className={
                   search.date === 'week' ? style.active : style.dateOption
@@ -108,14 +144,26 @@ const FilterPicker = ({ onChange, defaultValue }) => {
               </p>
               <p
                 onClick={() => {
-                  onChange({
-                    ...search,
-                    date: 'month',
-                  });
-                  setSearch({
-                    ...search,
-                    date: 'month',
-                  });
+                  if (search.date === 'month') {
+                    onChange({
+                      ...search,
+                      date: '',
+                    });
+                    setSearch({
+                      ...search,
+                      date: '',
+                    });
+                    return;
+                  } else {
+                    onChange({
+                      ...search,
+                      date: 'month',
+                    });
+                    setSearch({
+                      ...search,
+                      date: 'month',
+                    });
+                  }
                 }}
                 className={
                   search.date === 'month' ? style.active : style.dateOption
