@@ -83,6 +83,25 @@ export const projectsApi = createApi({
         }
       },
     }),
+    ramadanChallenge: builder.mutation({
+      query: data => ({
+        url: 'users/challenge',
+        method: 'POST',
+      }),
+      invalidatesTags: ['Projects'],
+    }),
+    async onQueryStarted(tasks, { dispatch, queryFulfilled }) {
+      try {
+        await queryFulfilled;
+        dispatch(
+          tasksApi.util.updateQueryData('getTasks', undefined, draft => {
+            draft.data = draft.data.filter(t => t.projectUuid !== tasks);
+          })
+        );
+      } catch (error) {
+        console.error('Error deleting project:', error);
+      }
+    },
   }),
 });
 export const {
@@ -91,4 +110,5 @@ export const {
   useCreateProjectMutation,
   useUpdateProjectMutation,
   useDeleteProjectMutation,
+  useRamadanChallengeMutation,
 } = projectsApi;

@@ -17,7 +17,6 @@ const Details = ({
       <div className={style.name}>
         <AiOutlineProject style={{ color: color }} />
         <input
-          autoFocus
           className={`${style.input} ${style.inputName}`}
           defaultValue={name}
           onBlur={e =>

@@ -1,4 +1,7 @@
 import style from './logo.module.css';
+import Lottie from 'lottie-react';
+import ramadan from './ramadan.json';
+
 const Logo = () => {
   return (
     <div className={style.logo}>
@@ -7,11 +10,18 @@ const Logo = () => {
         style={{
           width: '1.5rem',
           height: '1.5rem',
-          color: 'var(--primary-color)',
         }}
         alt='Logo'
       />
-      <h1>Taskora</h1>
+      <div className={style.title}>
+        <h1>Taskora</h1>
+        <Lottie
+        className={style.lanternAnimation}
+          animationData={ramadan}
+          loop={true}
+          size={0.1}
+        />
+      </div>
     </div>
   );
 };
