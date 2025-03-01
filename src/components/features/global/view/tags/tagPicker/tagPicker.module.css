@@ -30,5 +30,5 @@
   border-color: var(--text-color);
 }
 .input::placeholder {
-  color: var(--border-color);
+  color: var(--light-text-color);
 }

@@ -64,7 +64,7 @@ const TagPicker = ({ onChange }) => {
         <div className={style.inputs}>
           <Input
             className={style.input}
-            placeholder='New Tag'
+            placeholder='New tag name'
             onChange={e => {
               setNewTag({
                 ...newTag,
