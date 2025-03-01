@@ -15,6 +15,10 @@
 
 .inputContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: var(--current-spacing-xs);
+}
+.inputContainer label {
+  color: var(--light-text-color);
+  font-size: var(--current-font-size-sm);
 }
