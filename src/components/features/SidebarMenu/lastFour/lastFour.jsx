@@ -31,7 +31,7 @@ const LastFour = ({ type }) => {
       ) : (
         <div className={style.miniCard}>
           {data.map(item => (
-            <MiniCard key={item.name} type={type} uuid={item.uuid}></MiniCard>
+            <MiniCard key={item?.name} type={type} uuid={item?.uuid}></MiniCard>
           ))}
         </div>
       )}

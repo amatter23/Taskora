@@ -34,15 +34,10 @@ import useDeadlineRemaining from '../../../../hooks/useDeadlineRemaining';
 import View from '../view/view/view';
 import useModalVisibility from '../../../../hooks/useModalVisibility';
 import useModalComponent from '../../../../hooks/useModalComponent';
-
+import RamadanView from '../../../ramadan/ramadanView/ramadanView';
 const Card = ({ type, uuid }) => {
   const toggleVisibility = useModalVisibility();
   const setComponent = useModalComponent();
-
-  const handleClick = () => {
-    setComponent(<View uuid={uuid} type={type} />);
-    toggleVisibility();
-  };
 
   const data =
     useSelector(state => {
@@ -51,6 +46,16 @@ const Card = ({ type, uuid }) => {
       }
       return selectProjectWithUuid(state, uuid);
     }) || {};
+  const handleClick = () => {
+    if (data.theme === 'Ramadan'.toUpperCase()) {
+      setComponent(<RamadanView uuid={uuid} type={type} />);
+      toggleVisibility();
+      return;
+    }
+    setComponent(<View uuid={uuid} type={type} />);
+    toggleVisibility();
+  };
+
   return (
     <section onClick={handleClick} className={style.card}>
       <main className={style.title}>

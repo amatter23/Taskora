@@ -6,6 +6,9 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import Search from '../filter/search/search';
 import Filter from '../filter/filter/filter';
 import { useSelector } from 'react-redux';
+import RamadanButton from '../../../ramadan/ramadanButton/ramadanButton';
+import RamadanPrayer from '../../../ramadan/ramadanPrayer/ramadanPrayer';
+
 const Dashboard = () => {
   const [nameSearch, setNameSearch] = useState();
   const [search, setSearch] = useState();
@@ -24,6 +27,9 @@ const Dashboard = () => {
           Welcome back <span className={style.name}>{userData.name}</span>
         </h1>
         <div className={style.filters}>
+          <RamadanPrayer></RamadanPrayer>
+          <RamadanButton></RamadanButton>
+
           <Search
             searchData={e => {
               setNameSearch(e);

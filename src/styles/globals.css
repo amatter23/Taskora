@@ -2,7 +2,9 @@
   /* Colors */
   --error-color: #c90000;
   --success-color: #22c55e;
-
+  --ramadan-primary-color: #61827b;
+  --ramadan-background-color: #323f4f;
+  --ramadan-text-color: #ebbc62;
   /* Typography */
   --font-family: 'Chillax', sans-serif;
 
@@ -110,5 +112,5 @@ input {
 }
 
 button {
-  font-family: 'Chillax', sans-serif ;
+  font-family: 'Chillax', sans-serif;
 }

@@ -39,6 +39,15 @@
   color: var(--border-color);
 }
 
+.buttonRamadan {
+  background-color: var(--ramadan-background-color);
+  color: var(--ramadan-text-color);
+}
+.buttonRamadan:hover {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 .content {
   display: flex;
   align-items: center;

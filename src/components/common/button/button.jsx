@@ -5,6 +5,7 @@ const Button = ({
   isActive,
   bgColor,
   textColor,
+  ramadan,
   color,
   width,
   disable,
@@ -22,6 +23,7 @@ const Button = ({
     textColor && style[`buttonText`],
     disable && style[`buttonDisable`],
     color && style['customeColor'],
+    ramadan && style['buttonRamadan'],
   ]
     .filter(Boolean)
     .join(' ');

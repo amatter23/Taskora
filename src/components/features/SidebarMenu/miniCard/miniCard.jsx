@@ -1,19 +1,3 @@
-/**
- * A component that renders a clickable card with minimal information
- * @component
- * @param {Object} props - Component props
- * @param {Function} props.onClick - Click handler function
- * @param {string} props.uuid - Unique identifier for the project or task
- * @param {('project'|'task')} props.type - Determines if the card represents a project or task
- * @returns {JSX.Element} A card displaying either project (with color) or task information
- *
- * @example
- * <MiniCard
- *   onClick={() => {}}
- *   uuid="123e4567-e89b"
- *   type="project"
- * />
- */
 import style from './miniCard.module.css';
 import { useSelector } from 'react-redux';
 import { selectProjectWithUuid } from '../../../../store/selectors/projects/projectwithUuidSelector';
@@ -21,16 +5,24 @@ import { selectTaskWithUuid } from '../../../../store/selectors/tasks/taskwithUu
 import useModalComponent from '../../../../hooks/useModalComponent';
 import useModalVisibility from '../../../../hooks/useModalVisibility';
 import View from '../../global/view/view/view';
+import RamadanView from '../../../ramadan/ramadanView/ramadanView';
 const MiniCard = ({ onClick, uuid, type }) => {
   const toggleVisibility = useModalVisibility();
   const setComponent = useModalComponent();
-  const data = useSelector(state =>
-    type === 'project'
-      ? selectProjectWithUuid(state, uuid)
-      : selectTaskWithUuid(state, uuid)
-  );
+  const data =
+    useSelector(state => {
+      if (type === 'task') {
+        return selectTaskWithUuid(state, uuid);
+      }
+      return selectProjectWithUuid(state, uuid);
+    }) || {};
   const handleClick = () => {
-    setComponent(<View type={type} uuid={uuid} />);
+    if (data.theme === 'Ramadan'.toUpperCase()) {
+      setComponent(<RamadanView uuid={uuid} type={type} />);
+      toggleVisibility();
+      return;
+    }
+    setComponent(<View uuid={uuid} type={type} />);
     toggleVisibility();
   };
   return (
