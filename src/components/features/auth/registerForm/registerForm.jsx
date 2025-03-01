@@ -1,13 +1,14 @@
 import style from '../../../layouts/authLayout/authLayout.module.css';
 import useRegistration from '../../../../hooks/auth/useRegistration';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AuthLayout from '../../../layouts/authLayout/authLayout';
 import CreatePassword from '../createPassword/createPassword';
+import { useIsValidName } from '../../../../hooks/auth/useIsValidNama';
 const RegisterForm = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [passwordConfirm, setPasswordConfirm] = useState();
+  const { name, setName, isValidName, nameError } = useIsValidName();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [passwordMatch, setPasswordMatch] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [passwordErrors, setPasswordErrors] = useState({
@@ -18,9 +19,19 @@ const RegisterForm = () => {
   });
   const { handleRegister, registerIsLoading } = useRegistration();
   const [disable, setDisable] = useState(true);
+  useEffect(() => {
+    setDisable(
+      !isValidName || 
+      !email || 
+      !password || 
+      !passwordMatch || 
+      !isValidPassword
+    );
+  }, [isValidName, email, password, passwordMatch, isValidPassword]);
+  
   const registration = async e => {
     e.preventDefault();
-    if (!disable) {
+    if (!disable && isValidName && isValidPassword && passwordMatch) {
       await handleRegister({ name, email, password });
     }
   };
@@ -28,13 +39,11 @@ const RegisterForm = () => {
   const handleNameChange = e => {
     const newName = e.target.value;
     setName(newName);
-    setDisable(!newName || !email || !password || !passwordMatch);
   };
 
   const handleEmailChange = e => {
     const newEmail = e.target.value;
     setEmail(newEmail);
-    setDisable(!name || !newEmail || !password || !passwordMatch);
   };
 
   const handlePasswordChange = e => {
@@ -58,13 +67,11 @@ const RegisterForm = () => {
       special: hasSpecialChar,
       length: hasLength,
     });
-    setDisable(!name || !email || !newPassword || !passwordMatch || !isValid);
   };
   const handleConfirmPasswordChange = e => {
     const isMatch = password === e.target.value;
     setPasswordConfirm(e.target.value);
     setPasswordMatch(isMatch);
-    setDisable(!name || !email || !password || !isMatch);
   };
 
   return (
@@ -75,27 +82,23 @@ const RegisterForm = () => {
       signWith
       authState={'register'}
     >
-      <form
-        onSubmit={e => {
-          registration(e);
-        }}
-      >
+      <form onSubmit={registration}>
         <div>
           <div>
             <label>Full Name</label>
             <input
-              onChange={e => {
-                handleNameChange(e);
-              }}
+              value={name}
+              onChange={handleNameChange}
               placeholder='Enter your full name'
               type='text'
+              className={nameError ? style.inputError : ''}
             />
+            {nameError && <label className={style.errorText}>{nameError}</label>}
           </div>
           <label>Email</label>
           <input
-            onChange={e => {
-              handleEmailChange(e);
-            }}
+            value={email}
+            onChange={handleEmailChange}
             placeholder='Example@email.com'
             type='email'
           />

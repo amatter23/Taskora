@@ -24,6 +24,7 @@ const UserPhoto = () => {
       }}
       onChange={handleChange}
       className={style.userPhotoUpload}
+      accept='image/png, image/jpeg, image/jpg'
     >
       {isLoading ? (
         <>

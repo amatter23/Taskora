@@ -31,7 +31,8 @@ export const useUpdateProfile = () => {
       toast.success(`profile updated successfully `);
       return true;
     } catch (error) {
-      toast.error(error.message || 'Failed to update profile');
+      console.log(error)
+      toast.error(error.data.message || 'Failed to update profile');
       return null;
     }
   };

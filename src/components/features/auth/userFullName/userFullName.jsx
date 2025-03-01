@@ -1,14 +1,15 @@
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import style from './userFullName.module.css';
 import { useUpdateProfile } from '../../../../hooks/useUpdateProfile';
 import Loading from '../../../common/loading /loading';
+import { useIsValidName } from '../../../../hooks/auth/useIsValidNama';
 const UserFullName = () => {
   const userFullName = useSelector(state => state.auth.user.name);
-  const [name, setName] = useState(userFullName);
+  const { name, setName, isValidName, nameError } =
+    useIsValidName(userFullName);
   const { updateProfile, isLoading } = useUpdateProfile();
   const handelChangeName = () => {
-    if (name === userFullName) return;
+    if (name === userFullName || !isValidName) return;
     const newName = {
       name: name,
     };
@@ -24,9 +25,12 @@ const UserFullName = () => {
           }}
           onBlur={handelChangeName}
           type='text'
-          className={style.title}
-          defaultValue={userFullName}
+          className={`${style.title} ${nameError ? style.error : ''}`}
+          value={name} 
         />
+        <label htmlFor=''>
+          {nameError && <div className={style.errorText}>{nameError}</div>}
+        </label>
         {isLoading && (
           <Loading
             color={'var(--text-color)'}
