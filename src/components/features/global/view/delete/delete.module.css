@@ -7,6 +7,7 @@
   cursor: pointer;
   border-radius: var(--current-border-radius);
   gap: var(--current-spacing-xs);
+  transition: all ease-in-out 200ms;
 }
 .delete:hover {
   background-color: var(--error-color);
