@@ -57,7 +57,7 @@
   color: var(--text-color);
   text-align: center;
 }
-.prjectName {
+.projectName {
   display: flex;
   gap: calc(var(--current-spacing-xs) / 2);
   align-items: center;

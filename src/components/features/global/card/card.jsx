@@ -82,8 +82,8 @@ const Card = ({ type, uuid }) => {
               </div>
             )}
             <div
-              style={{ color: data.project?.color + '50' }}
-              className={style.prjectName}
+              style={{ color: data.project?.color }}
+              className={style.projectName}
             >
               <FaProjectDiagram />
               <h4>{data?.project?.name}</h4>

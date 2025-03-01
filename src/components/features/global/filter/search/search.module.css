@@ -5,6 +5,9 @@
   background-color: var(--hover-color);
   color: var(--text-color);
 }
+.input::placeholder {
+  color: var(--light-text-color);
+}
 .input:hover {
   background-color: var(--hover-color);
 }
