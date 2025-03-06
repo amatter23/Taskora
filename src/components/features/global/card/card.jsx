@@ -71,7 +71,7 @@ const Card = ({ type, uuid }) => {
         <h5>
           {data.description
             ? data.description
-            : `There is no description for this ${type} `}
+            : `There is no description for this ${type}`}
         </h5>
       </main>
       <footer className={style.footer}>

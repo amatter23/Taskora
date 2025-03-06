@@ -5,14 +5,14 @@ import style from './moreOptions.module.css';
 import Options from '../options/options';
 const MoreOptions = () => {
   const newContent = useAddNewContent();
-  const handelNewContent = type => {
+  const handleNewContent = type => {
     newContent(type);
   };
   return (
     <div className={style.moreOptions} title='Add new Task/Project'>
       <DropDown
         onChange={data => {
-          handelNewContent(data);
+          handleNewContent(data);
         }}
         placement={'bottomRight'}
         content={Options}
