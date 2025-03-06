@@ -20,7 +20,7 @@ const GetOtp = ({ passData }) => {
       <div>
         <label>Email</label>
         <input
-          placeholder='Enter your email to forget password'
+          placeholder='Enter your email to reset your password'
           type='email'
           value={email}
           onChange={e => {

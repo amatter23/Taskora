@@ -68,7 +68,11 @@ const Card = ({ type, uuid }) => {
             ></div>
           ) : null}
         </div>
-        <h5>{data.description}</h5>
+        <h5>
+          {data.description
+            ? data.description
+            : `There is no description for this ${type}`}
+        </h5>
       </main>
       <footer className={style.footer}>
         {type === 'project' ? (
