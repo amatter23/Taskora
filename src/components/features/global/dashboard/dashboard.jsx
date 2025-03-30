@@ -22,7 +22,7 @@ const Dashboard = () => {
     <main className={style.dashboardContainer}>
       <header className={style.header}>
         <h1>
-          Welcome back <span className={style.name}>{userData.name}</span>
+          🌙 Happy Eid, <span className={style.name}>{userData.name}</span>!
         </h1>
         <div className={style.filters}>
           <Search

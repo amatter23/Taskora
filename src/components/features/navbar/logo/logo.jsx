@@ -12,7 +12,7 @@ const Logo = () => {
         alt='Logo'
       />
       <div className={style.title}>
-        <h1>Taskora</h1>
+        <h1>Taskora 🕌</h1>
       </div>
     </div>
   );
