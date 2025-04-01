@@ -5,7 +5,6 @@ import { selectTaskWithUuid } from '../../../../store/selectors/tasks/taskwithUu
 import useModalComponent from '../../../../hooks/useModalComponent';
 import useModalVisibility from '../../../../hooks/useModalVisibility';
 import View from '../../global/view/view/view';
-import RamadanView from '../../../ramadan/ramadanView/ramadanView';
 const MiniCard = ({ onClick, uuid, type }) => {
   const toggleVisibility = useModalVisibility();
   const setComponent = useModalComponent();
@@ -17,11 +16,6 @@ const MiniCard = ({ onClick, uuid, type }) => {
       return selectProjectWithUuid(state, uuid);
     }) || {};
   const handleClick = () => {
-    if (data.theme === 'Ramadan'.toUpperCase()) {
-      setComponent(<RamadanView uuid={uuid} type={type} />);
-      toggleVisibility();
-      return;
-    }
     setComponent(<View uuid={uuid} type={type} />);
     toggleVisibility();
   };
