@@ -18,7 +18,7 @@ const EidCelebration = () => {
   const [hasWon, setHasWon] = useState(false);
   const [message, setMessage] = useState("");
   const [guessNumber, setGuessNumber] = useState("");
-
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (showAnimation) {
       const timer = setTimeout(() => {
@@ -39,27 +39,41 @@ const EidCelebration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await submitAnswer({ guessNumber, userId }).unwrap();
-    if (result.status === "not_winner") {
+    try {
+      const result = await submitAnswer({ guessNumber, userId }).unwrap();
+      if (result.status === "not_winner") {
+        setGameCompleted(true);
+        setHasWon(false);
+        setMessage(result.message);
+      }
+      if (result.status === "winner") {
+        setGameCompleted(true);
+        setHasWon(true);
+      }
+      if (
+        result.status === "already_answered" ||
+        result.status === "not-eligible"
+      ) {
+        setGameCompleted(true);
+        setMessage(result.message);
+        setHasWon(false);
+      }
+      if (result.status === "error") {
+        setGameCompleted(true);
+        setMessage(result.message);
+        setHasWon(false);
+        setError(true);
+      }
+    } catch (error) {
       setGameCompleted(true);
       setHasWon(false);
-      setMessage(result.message);
-      dispatch(finish());
+      setMessage(
+        "An error occurred while submitting your answer. Please try again later."
+      );
+      setError(true);
+    } finally {
+      setGuessNumber("");
     }
-    if (result.status === "winner") {
-      setGameCompleted(true);
-      setHasWon(true);
-    }
-    if (
-      result.status === "already_answered" ||
-      result.status === "not-eligible"
-    ) {
-      setGameCompleted(true);
-      setMessage(result.message);
-      setHasWon(false);
-    }
-
-    setGuessNumber("");
   };
   const onClose = () => {
     dispatch(finish());
@@ -68,6 +82,14 @@ const EidCelebration = () => {
     setSkipGame(true);
     setGameCompleted(true);
     setShowAnimation(false);
+  };
+  const tryAgain = () => {
+    setGuessNumber("");
+    setGameCompleted(false);
+    setShowAnimation(true);
+    setHasWon(false);
+    setMessage("");
+    setError(null);
   };
 
   return (
@@ -145,9 +167,7 @@ const EidCelebration = () => {
                     <div className={styles.winScreen}>
                       <h2>Eid Mubarak! 🎊</h2>
                       <div className={styles.winningNumber}>
-                        <span className={styles.numberDisplay}>
-                          {guessNumber}
-                        </span>
+                        <span className={styles.numberDisplay}>2</span>
                       </div>
                       <p>Your answer is correct! 🎯</p>
                       <p>
@@ -162,16 +182,34 @@ const EidCelebration = () => {
                   </>
                 ) : (
                   <>
-                    <h2>😔 Better luck next time</h2>
+                    <h2>Oops! Something went wrong. ❌</h2>
                     <p>
-                      {message}
+                      <span
+                        style={{
+                          fontWeight: "bold",
+                          color: `${error === true ? "red" : ""}`,
+                        }}
+                      >
+                        {message}
+                      </span>
                       <br />
-                      💪 Keep working hard to earn money and chase your dreams!
+                      {error === true ? "" : "The correct answer is 2 months."}
                     </p>
                     <div className={styles.buttonGroup}>
-                      <button className={styles.gameButton} onClick={onClose}>
-                        Continue to Taskora
+                      <button
+                        className={styles.gameButton}
+                        onClick={error === true ? tryAgain : onClose}
+                      >
+                        {error === true ? "Try Again" : "Continue to Taskora"}
                       </button>
+                      {error === true ? (
+                        <button
+                          className={styles.skipButton}
+                          onClick={handleSkipGame}
+                        >
+                          Skip Game
+                        </button>
+                      ) : null}
                     </div>
                   </>
                 )}
