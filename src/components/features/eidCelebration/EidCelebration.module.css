@@ -10,6 +10,7 @@
   background-color: var(--background-color);
   border: solid 1px var(--border-color);
   border-radius: var(--current-border-radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .eidTitle {
@@ -140,7 +141,7 @@
   background-color: #d4af37;
   color: white;
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 30px;
   font-size: 1rem;
   font-weight: bold;
@@ -183,17 +184,27 @@
   max-width: 200px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .gameContainer {
     padding: 1.5rem;
     width: 85%;
   }
-
-  .startAnimation {
-    width: 180px;
-    height: 180px;
+  .animationContainer {
+    width: 100%;
   }
-
+  .inputDecoration {
+    position: absolute;
+    top: -90px;
+    right: -10px;
+    background-color: #d4af37;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
   .eidTitle {
     font-size: 1.5rem;
   }
