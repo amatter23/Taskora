@@ -1,18 +1,18 @@
-import style from './logo.module.css';
+import style from "./logo.module.css";
 
 const Logo = () => {
   return (
     <div className={style.logo}>
       <img
-        src='/logo.png'
+        src="/logo.png"
         style={{
-          width: '1.5rem',
-          height: '1.5rem',
+          width: "1.5rem",
+          height: "1.5rem",
         }}
-        alt='Logo'
+        alt="Logo"
       />
       <div className={style.title}>
-        <h1>Taskora 🕌</h1>
+        <h1>Taskora</h1>
       </div>
     </div>
   );
