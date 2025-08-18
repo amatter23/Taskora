@@ -5,7 +5,13 @@
   height: 100%;
   padding-top: 2.5rem;
   gap: var(--current-spacing-sm);
+  transition: all 0.3s ease;
 }
+
+.recentContainer:hover {
+  transform: translateY(-1px);
+}
+
 .header {
   display: flex;
   align-items: center;
