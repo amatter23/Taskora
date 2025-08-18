@@ -5,7 +5,15 @@
   align-items: center;
   justify-content: start;
   height: 100%;
+  position: relative;
+  border-radius: var(--current-border-radius);
+  border: 2px solid transparent;
+  transition: all 0.2s ease-out;
+  padding: var(--current-spacing-sm);
+  margin: 0 var(--current-spacing-xs);
+  background: rgba(255, 255, 255, 0.01);
 }
+
 .header {
   display: flex;
   flex-direction: row;
@@ -15,10 +23,12 @@
   width: 100%;
   white-space: nowrap;
 }
+
 .title {
   display: flex;
   gap: var(--current-spacing-sm);
 }
+
 .count {
   display: flex;
   align-items: center;
@@ -27,22 +37,93 @@
   gap: calc(var(--current-spacing-xs) / 2);
   color: var(--light-text-color);
 }
+
 .color {
   height: 3px;
   width: 50%;
   border-radius: var(--current-border-radius);
 }
+
 .cardsContainer {
   display: flex;
   flex-direction: column;
   justify-content: start;
   overflow-y: scroll;
-  padding: var(--current-spacing-sm) 0;
-  gap: var(--current-spacing-xs);
+  padding: var(--current-spacing-sm);
+  gap: var(--current-spacing-sm);
   width: 100%;
   height: 90%;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  border-radius: var(--current-border-radius);
+  min-height: 200px;
+}
+
+.emptyColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--muted-text-color, #888);
+  opacity: 0.8;
+  padding: var(--current-spacing-lg);
+}
+
+.column.dragOver {
+  border: 2px solid var(--status-glow-color, var(--primary-color));
+  transform: scale(1.01);
+  position: relative;
+  box-shadow: 0 0 0 1px var(--status-glow-color, var(--primary-color)),
+    0 4px 20px rgba(var(--status-glow-rgb, 48, 107, 255), 0.15),
+    0 8px 40px rgba(var(--status-glow-rgb, 48, 107, 255), 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.column.dragActive {
+  border-color: rgba(48, 107, 255, 0.3);
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%);
+    opacity: 0.8;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--status-glow-color, var(--primary-color)),
+      0 0 10px rgba(255, 255, 255, 0.05),
+      inset 0 0 5px rgba(255, 255, 255, 0.02);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--status-glow-color, var(--primary-color)),
+      0 0 25px rgba(255, 255, 255, 0.1),
+      inset 0 0 15px rgba(255, 255, 255, 0.05);
+  }
+}
+
+.cardsContainer > * {
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.dropBar {
+  position: absolute;
+  left: var(--current-spacing-sm);
+  right: var(--current-spacing-sm);
+  height: 2px;
+  top: calc(var(--current-spacing-sm) * -1);
+  border-radius: var(--current-border-radius);
+  transform-origin: left center;
+  z-index: 40;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 900px) {
