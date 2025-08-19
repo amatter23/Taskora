@@ -1,0 +1,22 @@
+.preview {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  min-width: 200px;
+  max-width: 280px;
+  padding: var(--current-spacing-sm) var(--current-spacing-md);
+  border-radius: var(--current-border-radius);
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  font-weight: 500;
+  font-family: var(--font-family);
+  transform-origin: left top;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px 0px,
+    rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.title {
+  font-size: var(--current-font-size-sm);
+  opacity: 0.9;
+}

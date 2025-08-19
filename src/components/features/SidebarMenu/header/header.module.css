@@ -3,4 +3,11 @@
   align-items: center;
   justify-content: space-between;
   color: var(--light-text-color);
+  padding: var(--current-spacing-xs) 0;
+  transition: all 0.2s ease;
+}
+
+.header h4 {
+  margin: 0;
+  transition: color 0.2s ease;
 }
