@@ -1,3 +1,3 @@
-.logout :hover {
+.logout:hover {
   border-color: var(--error-color);
 }
