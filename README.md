@@ -25,12 +25,12 @@
 
 ## 📌 Features
 
-✅ **Project & Task Management** – Create and organize projects and tasks seamlessly.
-🏏️ **Tagging System** – Categorize tasks and projects with tags for easy filtering.
-📊 **Status Tracking** – Track task progress with statuses: `Done`, `In Progress`, and `Archived`.
-📅 **Due Dates** – Set deadlines and keep track of important tasks.
-🔍 **Filtering Options** – Prioritize work by filtering tasks based on status and due dates.
-🔐 **Email & Password Registration** – Register with email and password and verify your email to secure accounts.
+✅ **Project & Task Management** – Create and organize projects and tasks seamlessly.\
+🏏️ **Tagging System** – Categorize tasks and projects with tags for easy filtering.\
+📊 **Status Tracking** – Track task progress with statuses: `Done`, `In Progress`, and `Archived`.\
+📅 **Due Dates** – Set deadlines and keep track of important tasks.\
+🔍 **Filtering Options** – Prioritize work by filtering tasks based on status and due dates.\
+🔐 **Email & Password Registration** – Register with email and password and verify your email to secure accounts.\
 🔑 **OAuth via Google & GitHub** – Sign in quickly using Google or GitHub OAuth for convenient access.
 
 ---
